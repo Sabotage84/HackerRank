@@ -1,53 +1,60 @@
-using System.CodeDom.Compiler; 
-using System.Collections.Generic; 
-using System.Collections; 
-using System.ComponentModel; 
-using System.Diagnostics.CodeAnalysis; 
-using System.Globalization; 
-using System.IO; 
-using System.Linq; 
-using System.Reflection; 
-using System.Runtime.Serialization; 
-using System.Text.RegularExpressions; 
-using System.Text; 
-using System; 
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
-class Solution { 
+class Solution
+{
 
-// Complete the arrayManipulation function below. 
-static long arrayManipulation(int n, int[][] queries) { 
-int[] ARR = new int[n]; 
-long max=0; 
-for (int i=0; i<queries.GetLength(0); i++){ 
-for (int j=queries[i][0]-1; j<queries[i][1]; j++){ 
-ARR[j]+=queries[i][2]; 
-if(max<ARR[j]) 
-max=ARR[j]; 
-} 
-} 
-return max; 
-} 
+    // Complete the arrayManipulation function below. 
+    static long arrayManipulation(int n, int[][] queries)
+    {
+        int[] ARR = new int[n];
+        long max = 0;
+        for (int i = 0; i < queries.GetLength(0); i++)
+        {
+            for (int j = queries[i][0] - 1; j < queries[i][1]; j++)
+            {
+                ARR[j] += queries[i][2];
+                if (max < ARR[j])
+                    max = ARR[j];
+                Console.WriteLine(max.ToString());
+            }
+        }
+        return max;
+    }
 
-static void Main(string[] args) { 
-TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true); 
+    static void Main(string[] args)
+    {
+        string[] arStr = File.ReadAllLines("arr.txt");
 
-string[] nm = Console.ReadLine().Split(' '); 
 
-int n = Convert.ToInt32(nm[0]); 
+        string[] nm = arStr[0].Split(' ');
 
-int m = Convert.ToInt32(nm[1]); 
+        int n = Convert.ToInt32(nm[0]);
 
-int[][] queries = new int[m][]; 
+        int m = Convert.ToInt32(nm[1]);
 
-for (int i = 0; i < m; i++) { 
-queries[i] = Array.ConvertAll(Console.ReadLine().Split(' '), queriesTemp => Convert.ToInt32(queriesTemp)); 
-} 
+        int[][] queries = new int[m][];
 
-long result = arrayManipulation(n, queries); 
+        for (int i = 0; i < m; i++)
+        {
+            queries[i] = Array.ConvertAll(arStr[i+1].Split(' '), queriesTemp => Convert.ToInt32(queriesTemp));
+        }
 
-textWriter.WriteLine(result); 
+        long result = arrayManipulation(n, queries);
 
-textWriter.Flush(); 
-textWriter.Close(); 
-} 
+        Console.WriteLine(result);
+
+        Console.ReadKey();
+    }
 }
