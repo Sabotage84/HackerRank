@@ -23,9 +23,6 @@ namespace ConsoleApp13
         private static long foo(List<long> arr, long r)
         {
             long res = 0;
-            //Dictionary<int, long> firstLevel = new Dictionary<int, long>();
-            //Dictionary<int, long> secondLevel = new Dictionary<int, long>();
-            //Dictionary<int, long> thirdLevel = new Dictionary<int, long>();
             long[] firstLevel = new long[arr.Count];
             long[] secondLevel = new long[arr.Count];
             long[] thirdLevel = new long[arr.Count];
@@ -43,7 +40,7 @@ namespace ConsoleApp13
 
             for (int j = 0; j < firstLevel.Length; j++)
             {
-                if (secondLevel.Contains(firstLevel[j] * r) && thirdLevel.Contains(firstLevel[j] * r * r))
+                if (secondLevel.Contains(firstLevel[j] * r)  && thirdLevel.Contains(firstLevel[j] * r * r))
                 {
                     for (int k = j + 1; k < secondLevel.Length; k++)
                     {
