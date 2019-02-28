@@ -10,8 +10,16 @@ namespace ConsoleApp13
     {
         static void Main(string[] args)
         {
-            long r = 3;
-            long[] lon = new long[6] { 1, 3, 9, 9, 27, 81 };
+            //long r = 3;
+            //long[] lon = new long[6] { 1, 3, 9, 9, 27, 81 };
+
+            long r = 1;
+            long[] lon = new long[100];
+            for (int i = 0; i < lon.Length; i++)
+            {
+                lon[i] = 1;
+            }
+
             long res = 0;
             res = foo(lon.ToList(), r);
             Console.WriteLine(res);
@@ -23,71 +31,39 @@ namespace ConsoleApp13
         private static long foo(List<long> arr, long r)
         {
             long res = 0;
-            long[] firstLevel = new long[arr.Count];
-            long[] secondLevel = new long[arr.Count];
-            long[] thirdLevel = new long[arr.Count];
-
-            int i = 0;
+            //Dictionary<int, long> firstLevel = new Dictionary<int, long>();
+            Dictionary<long, int> secondLevel = new Dictionary<long, int>();
+            Dictionary<long, int> thirdLevel = new Dictionary<long, int>();
+            int i=1, j=1;
+             arr.Reverse();
             foreach (var item in arr)
             {
-                firstLevel[i] = item;
-                if (item % r == 0)
-                    secondLevel[i] = item;
-                if (item % (r * r) == 0)
-                    thirdLevel[i] = item;
-                i++;
-            }
-
-            for (int j = 0; j < firstLevel.Length; j++)
-            {
-                if (secondLevel.Contains(firstLevel[j] * r)  && thirdLevel.Contains(firstLevel[j] * r * r))
+               if(secondLevel.Keys.Contains(item*r) && i>2)
                 {
-                    for (int k = j + 1; k < secondLevel.Length; k++)
+                    if (thirdLevel.Keys.Contains(item*r*r))
                     {
-                        if (firstLevel[j] * r == secondLevel[k])
-                        {
-                            for (int l = k + 1; l < thirdLevel.Length; l++)
-                            {
-                                if (secondLevel[k] * r == thirdLevel[l])
-                                {
-                                    res++;
-                                }
-                            }
-                        }
+                        res += secondLevel[item * r] * thirdLevel[item * r * r];
                     }
                 }
+
+                if (secondLevel.Keys.Contains(item))
+                {
+                    if (i > 2)
+                        secondLevel[item]++;
+                }
+                else
+                    secondLevel.Add(item, 1);
+
+                if (thirdLevel.Keys.Contains(item))
+                {
+                    if (i > 3)
+                        thirdLevel[item]++;
+                }
+                else
+                    thirdLevel.Add(item, 1);
+                i++;
+                j++;
             }
-
-
-
-
-           
-   
-
-
-
-
-//    Console.WriteLine("First level:");
-//            foreach (KeyValuePair<int, long> keyValue in firstLevel)
-//            {
-//                Console.WriteLine(keyValue.Key + " - " + keyValue.Value);
-
-//            }
-
-//Console.WriteLine();
-//            Console.WriteLine("Second level:");
-//            foreach (KeyValuePair<int, long> keyValue in secondLevel)
-//            {
-//                Console.WriteLine(keyValue.Key + " - " + keyValue.Value);
-
-//            }
-//            Console.WriteLine();
-//            Console.WriteLine("Third level:");
-//            foreach (KeyValuePair<int, long> keyValue in thirdLevel)
-//            {
-//                Console.WriteLine(keyValue.Key + " - " + keyValue.Value);
-
-//            }
 
             return res;
         }
