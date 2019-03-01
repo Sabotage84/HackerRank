@@ -24,7 +24,7 @@ namespace ConsoleApp13
             {
                 lon[i] = 1;
             }
-            long realAnswer = 161700;
+            
             long res = 0;
             res = foo(lon.ToList(), r);
             Console.WriteLine(res);
@@ -37,28 +37,28 @@ namespace ConsoleApp13
         {
             long res = 0;
             
-            Dictionary<long, long> secondLevel = new Dictionary<long, long>();
-            Dictionary<long, long> thirdLevel = new Dictionary<long, long>();
+            Dictionary<long, long> secondLevel = new Dictionary<long, long>();//для первого уровня ожидания
+            Dictionary<long, long> thirdLevel = new Dictionary<long, long>();// кто уже готов)))
            
             arr.Reverse();
             foreach (var item in arr)
             {
-                if (thirdLevel.ContainsKey(item * r))
+                if (thirdLevel.ContainsKey(item * r))//добавляем в результат если на третьем уровне есть кто ждет
                     res += thirdLevel[item*r];
 
 
-                if (secondLevel.Keys.Contains(item * r))
+                if (secondLevel.Keys.Contains(item * r))// если на втором уровне есть кто ждет
                 {
-                    //secondLevel[item*r]++;
-                    if (thirdLevel.Keys.Contains(item))
-                        thirdLevel[item]+=secondLevel[item*r];
+                    
+                    if (thirdLevel.Keys.Contains(item))//то проверяем третий и добаляем ожидающего
+                        thirdLevel[item]+=secondLevel[item*r];//добавлять нужно с приплюсовыванием второго, на нем может ожидать не один
                     else
                         thirdLevel.Add(item, secondLevel[item*r]);
                     
                 }
 
                 
-                if (secondLevel.Keys.Contains(item))
+                if (secondLevel.Keys.Contains(item))//в любом случае во второй нужно добавить нового ожидающего
                     secondLevel[item]++;
                 else
                     secondLevel.Add(item, 1);
