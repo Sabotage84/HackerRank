@@ -60,13 +60,12 @@ namespace ConsoleApp20
                 {
                     temp[index] = arr[right];
                     right++;
-                    res++;
+                    res+=leftEnd-left+1;
                 }
                 index++;
                
             }
-            if(leftEnd - left + 1==1)
-                res++;
+            
             ShowArray(arr);
             Array.Copy(arr, left, temp, index, leftEnd - left + 1);
             Array.Copy(arr, right, temp, index, rightEnd - right + 1);
