@@ -22,5 +22,10 @@ namespace UnitTestProject1
         {
             Assert.AreEqual(10, Program.substrCount(7, "abcbaba"));
         }
+        [TestMethod]
+        public void TestMethod4()
+        {
+            Assert.AreEqual(10, Program.substrCount(4, "aaaa"));
+        }
     }
 }
