@@ -24,5 +24,18 @@ namespace UnitTestProject1
         {
             Assert.AreEqual(3, Program.commonChild("SHINCHAN", "NOHARAAA"));
         }
+
+        [TestMethod]
+        public void TestMethod4()
+        {
+            Assert.AreEqual(2, Program.commonChild("OUDFRMYMAW", "AWHYFCCMQX"));
+        }
+
+        [TestMethod]
+        public void TestMethod5()
+        {
+            Assert.AreEqual(15, Program.commonChild("WEWOUCUIDGCGTRMEZEPXZFEJWISRSBBSYXAYDFEJJDLEBVHHKS", "FDAGCXGKCTKWNECHMRXZWMLRYUCOCZHJRRJBOAJOQJZZVUYXIC"));
+        }
+
     }
 }
