@@ -54,77 +54,85 @@ namespace ConsoleApp8
         public static int commonChild(string s1, string s2)
         {
             int res = 0;
-            string tempS1 = "";
-            Dictionary<CharInd, int> dic = new Dictionary<CharInd, int>();
-            string tempS2 = "";
-            //for (int i = 0; i < s1.Length; i++)
-            //{
-            //    if (s2.Contains(s1[i]))
-            //        tempS1 += s1[i];
-            //}
-
-            //for (int i = 0; i < s2.Length; i++)
-            //{
-            //    if (s1.Contains(s2[i]))
-            //        tempS2 += s2[i];
-            //}
-            //s1 = tempS1;
-            //s2 = tempS2;
-            res = CommonChildReq3(s1, s2,0,0,dic);
-
-            return res;
-        }
-
-        private static int CommonChildReq3(string s1, string s2, int start1,int start2, Dictionary<CharInd, int> dic)
-        {
-            int res = 0;
-            int tempRes = 0;
-            List<char> alredyDone = new List<char>();
-            
-            for (int i =start1; (i < s1.Length && res <= (s1.Length - i)); i++)
+            int[] arr = new int[s1.Length];
+            for (int i = s1.Length-1; i >=0; i--)
             {
-                if (!alredyDone.Contains(s1[i]))
+                for (int j = 0; j<s2.Length; j++)
                 {
-                    alredyDone.Add(s1[i]);
-                    List<char> alredyDone2 = new List<char>();
-                    for (int j = start2; (j < s2.Length && res <= (s2.Length - j)); j++)
+                    if(s1[i]==s2[j])
                     {
-                        if (!alredyDone2.Contains(s2[j]))
-                        {
-                            alredyDone2.Add(s2[j]);
-                            if (s1[i] == s2[j])
-                            {
-                                if (dic.ContainsKey(new CharInd(s1[i], i, j)))
-                                    tempRes = dic[new CharInd(s1[i], i, j)];
-                                else
-                                {
-                                    tempRes++;
-                                    if (s2.Length - j > res)
-                                       tempRes += CommonChildReq3(s1, s2,i+1,j+1, dic);
+                        
+                        arr[j]=1;
 
-                                    dic.Add(new CharInd(s1[i], i, j), tempRes);
-                                }
-                            }
-                            
+                        int tempMax = 0;
+                        for (int k = j+1; k < arr.Length; k++)
+                        {
+                            if (tempMax < arr[k])
+                                tempMax = arr[k];
                         }
-                        if (tempRes > res)
-                                res = tempRes;
-                            tempRes = 0;
+                        arr[j] += tempMax;
                     }
                 }
-                
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (res < arr[i])
+                    res = arr[i];
             }
 
             return res;
         }
 
-        private static void ShowList(List<char> alredyDone)
-        {
-            foreach (var item in alredyDone)
-            {
-                Console.Write(item + " ");
-            }
-            Console.WriteLine();
-        }
+        //private static int CommonChildReq3(string s1, string s2, int start1,int start2, Dictionary<CharInd, int> dic)
+        //{
+        //    int res = 0;
+        //    int tempRes = 0;
+        //    List<char> alredyDone = new List<char>();
+            
+        //    for (int i =start1; (i < s1.Length && res <= (s1.Length - i)); i++)
+        //    {
+        //        if (!alredyDone.Contains(s1[i]))
+        //        {
+        //            alredyDone.Add(s1[i]);
+        //            List<char> alredyDone2 = new List<char>();
+        //            for (int j = start2; (j < s2.Length && res <= (s2.Length - j)); j++)
+        //            {
+        //                if (!alredyDone2.Contains(s2[j]))
+        //                {
+        //                    alredyDone2.Add(s2[j]);
+        //                    if (s1[i] == s2[j])
+        //                    {
+        //                        if (dic.ContainsKey(new CharInd(s1[i], i, j)))
+        //                            tempRes = dic[new CharInd(s1[i], i, j)];
+        //                        else
+        //                        {
+        //                            tempRes++;
+        //                            if (s2.Length - j > res)
+        //                               tempRes += CommonChildReq3(s1, s2,i+1,j+1, dic);
+
+        //                            dic.Add(new CharInd(s1[i], i, j), tempRes);
+        //                        }
+        //                    }
+                            
+        //                }
+        //                if (tempRes > res)
+        //                        res = tempRes;
+        //                    tempRes = 0;
+        //            }
+        //        }
+                
+        //    }
+
+        //    return res;
+        //}
+
+        //private static void ShowList(List<char> alredyDone)
+        //{
+        //    foreach (var item in alredyDone)
+        //    {
+        //        Console.Write(item + " ");
+        //    }
+        //    Console.WriteLine();
+        //}
     }
 }
