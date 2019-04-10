@@ -12,4 +12,25 @@ namespace Search_Swap_Nodes
         {
         }
     }
+
+    public class Node
+    {
+        int root;
+        Node left;
+        Node right;
+
+        public Node()
+        {
+            root = 1;
+            left = null;
+            right = null;
+        }
+
+        public Node(int root, Node left, Node right)
+        {
+            this.root = root;
+            this.left = left;
+            this.right = right;
+        }
+    }
 }
