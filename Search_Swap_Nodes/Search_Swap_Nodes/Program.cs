@@ -26,6 +26,13 @@ namespace Search_Swap_Nodes
             right = null;
         }
 
+        public Node(int root)
+        {
+            this.root = root;
+            left = null;
+            right = null;
+        }
+
         public Node(int root, Node left, Node right)
         {
             this.root = root;
