@@ -16,10 +16,25 @@ namespace Search_Swap_Nodes
     class TreeOfNodes
     {
         int[] numbers;
-
+        Node rootNode = new Node();
         public TreeOfNodes(int[][] matrix)
         {
+            for (int i = 0; i < matrix[0].Length; i++)
+            {
+                int temp = 0;
+                for (int j = temp; j < matrix[0].Length; j+=temp)
+                {
+                    temp = 0;
+                    int left = matrix[j][0];
+                    if (left != -1)
+                        temp++;
+                    int rght = matrix[j][1];
+                    if (rght != -1)
+                        temp++;
 
+                   
+                }
+            }
         }
     }
 
