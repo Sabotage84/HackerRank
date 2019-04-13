@@ -22,6 +22,7 @@ namespace Search_Swap_Nodes
             for (int i = 0; i < matrix[0].Length; i++)
             {
                 int temp = 0;
+		Node tempNode;
                 for (int j = temp; j < matrix[0].Length; j+=temp)
                 {
                     temp = 0;
