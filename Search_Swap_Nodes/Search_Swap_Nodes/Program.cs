@@ -31,9 +31,7 @@ namespace Search_Swap_Nodes
                         temp++;
                     int rght = matrix[j][1];
                     if (rght != -1)
-                        temp++;
-
-                   
+                        temp++;                   
                 }
             }
         }
