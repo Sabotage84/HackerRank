@@ -16,24 +16,38 @@ namespace Search_Swap_Nodes
     class TreeOfNodes
     {
         int[] numbers;
-        Node rootNode = new Node();
-        int temp = 1;
+       
+        
         public TreeOfNodes(int[][] matrix)
         {
+            int temp = 1;
+            Node rootNode = new Node();
+            List<Node> tempNodes = new List<Node>();
+            tempNodes.Add(rootNode);
+
             for (int i = 0; i < matrix[0].Length; i+=temp)
             {
-                
-		        Node tempNode;
-                for (int j = i; j < i+temp; j++)
+
+                List<Node> tempNodes2 = tempNodes;
+                for (int j = i, k=0; j < i+temp; j++,k++)
                 {
                     
                     int left = matrix[j][0];
                     if (left != -1)
+                    {
+                        tempNodes2[k].left = new Node(left, tempNodes2[k]);
+                        tempNodes.Add(tempNodes2[k].left);
                         temp++;
+                    }
                     int rght = matrix[j][1];
                     if (rght != -1)
-                        temp++;                   
+                    {
+                        tempNodes2[k].right = new Node(rght, tempNodes2[k]);
+                        tempNodes.Add(tempNodes2[k].right);
+                        temp++;
+                    }
                 }
+                tempNodes2 = null;
             }
         }
     }
@@ -43,8 +57,8 @@ namespace Search_Swap_Nodes
     {
         int root;
         Node parent;
-        Node left;
-        Node right;
+        public Node left;
+        public Node right;
 
         public Node()
         {
