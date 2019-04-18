@@ -10,17 +10,17 @@ namespace Search_Swap_Nodes
     {
         static void Main(string[] args)
         {
-            int[,] m =  {{2, 3 },
-                        { 4, - 1 },
-                        { 5 ,- 1 },
-                        { 6 ,- 1 },
-                        { 7, 8 },
-                        { - 1 ,9 },
-                         { - 1, - 1 },
-                        { 10 ,11 },
-                        { - 1 ,- 1 },
-                        { - 1 ,- 1 },
-                        { - 1, - 1 } };
+            int[][] m = new int[][] { new int[] {2, 3 },
+                        new int[]{ 4, - 1 },
+                        new int[]{ 5 ,- 1 },
+                        new int[]{ 6 ,- 1 },
+                        new int[] { 7, 8 },
+                        new int[] { - 1 ,9 },
+                        new int[] { - 1, - 1 },
+                        new int[] { 10 ,11 },
+                        new int[] { - 1 ,- 1 },
+                        new int[] { - 1 ,- 1 },
+                        new int[]{ - 1, - 1 } };
 
 
             //int[,] m =  { {2, 3 },
@@ -39,44 +39,42 @@ namespace Search_Swap_Nodes
 
     class TreeOfNodes
     {
-        int[] numbers;
+        
         public Node rootNode = new Node(1,null, 1);
         
-        public TreeOfNodes(int[,] matrix)
+        public TreeOfNodes(int[][] matrix)
         {
-            int temp = 1;
-            
+            int innerLimit = 1;
             List<Node> tempNodes = new List<Node>();
             tempNodes.Add(rootNode);
             int tempLevel = 2;
-            int temp3 = temp;
-            for (int i = 0; i < matrix.GetUpperBound(0) + 1; i+=temp3)
+            int outerIncr = innerLimit;
+            for (int i = 0; i < matrix.GetUpperBound(0) + 1; i+=outerIncr)
             {
-                temp3 = temp;
-                List<Node> tempNodes2 = tempNodes;
-                int temp2 = 0;
-                for (int j = i, k=i; j <i+temp; j++,k++)
+                outerIncr = innerLimit;
+                int childCount = 0;
+
+                for (int j = i; j <i+innerLimit; j++)
                 {
                     
-                    int left = matrix[j,0];
+                    int left = matrix[j][0];
                     if (left != -1)
                     {
-                        tempNodes2[k].left = new Node(left, tempNodes2[k], tempLevel);
-                        tempNodes.Add(tempNodes2[k].left);
-                        temp2++;
+                        tempNodes[j].left = new Node(left, tempNodes[j], tempLevel);
+                        tempNodes.Add(tempNodes[j].left);
+                        childCount++;
                     }
-                    int rght = matrix[j,1];
+                    int rght = matrix[j][1];
                     if (rght != -1)
                     {
-                        tempNodes2[k].right = new Node(rght, tempNodes2[k], tempLevel);
-                        tempNodes.Add(tempNodes2[k].right);
-                        temp2++;
+                        tempNodes[j].right = new Node(rght, tempNodes[j], tempLevel);
+                        tempNodes.Add(tempNodes[j].right);
+                        childCount++;
                     }
                     
                 }
-                temp = temp2;
+                innerLimit = childCount;
                 tempLevel++;
-                tempNodes2 = null;
             }
         }
 
@@ -98,6 +96,7 @@ namespace Search_Swap_Nodes
 
             }
             Console.WriteLine();
+
             foreach (var item in lst)
             {
                 Console.Write(item+" ");
@@ -111,12 +110,19 @@ namespace Search_Swap_Nodes
             Console.WriteLine();
         }
 
+        public int[][]  SwapTree(int[] queries)
+        {
+            int[][] res = new int[queries.Length][];
+
+
+            return res;
+        }
+
         private void ShowRight(List<int> lst,Node r, Node right, List<int> lvl)
         {
             lvl.Insert(lst.IndexOf(r.root) + 1, right.level);
             lst.Insert(lst.IndexOf(r.root) + 1, right.root);
          
-            //Console.WriteLine(right.root);
             if (right.left != null)
             {
                 ShowLeft(lst, right, right.left,lvl);
@@ -132,7 +138,6 @@ namespace Search_Swap_Nodes
             lvl.Insert(lst.IndexOf(r.root), n.level);
             lst.Insert(lst.IndexOf(r.root), n.root);
             
-            //Console.WriteLine(n.root);
             if (n.left!=null)
             {
                 ShowLeft(lst, n, n.left, lvl);
