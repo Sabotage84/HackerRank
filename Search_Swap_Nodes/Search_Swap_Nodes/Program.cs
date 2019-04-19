@@ -21,18 +21,16 @@ namespace Search_Swap_Nodes
                         new int[] { - 1 ,- 1 },
                         new int[] { - 1 ,- 1 },
                         new int[]{ - 1, - 1 } };
-
+            int[] q = { 2, 4 };
 
             //int[,] m =  { {2, 3 },
             //            { -1, -1 },
             //             {-1 ,-1 }
             //            };
             TreeOfNodes tree = new TreeOfNodes(m);
-            tree.ShowTree();
-            tree.rootNode.Swap();
-            tree.ShowTree();
-            tree.rootNode.Swap();
-            tree.ShowTree();
+           // tree.ShowTree();
+            tree.SwapTree(q);
+
             Console.ReadKey();
         }
     }
@@ -113,8 +111,33 @@ namespace Search_Swap_Nodes
         public int[][]  SwapTree(int[] queries)
         {
             int[][] res = new int[queries.Length][];
-
-
+            List<int> lst = new List<int>();
+            List<int> levelList = new List<int>();
+            if (rootNode != null)
+            {
+                for (int i = 0; i <queries.Length; i++)
+                {
+                    if (1 % queries[i] == 0)
+                        rootNode.Swap();
+                    lst.Add(rootNode.root);
+                    levelList.Add(rootNode.level);
+                    if (rootNode.left != null)
+                        SwapLeft(lst, rootNode, rootNode.left, levelList, queries[i]);
+                    if (rootNode.right != null)
+                        SwapRight(lst, rootNode, rootNode.right, levelList, queries[i]);
+                    res[i] = lst.ToArray();
+                    lst = new List<int>();
+                }
+            }
+            for (int i = 0; i < res.Length; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < res[i].Length; j++)
+                {
+                    Console.Write(res[i][j] + " ");
+                }
+                Console.WriteLine();
+            }
             return res;
         }
 
@@ -147,6 +170,69 @@ namespace Search_Swap_Nodes
                 ShowRight(lst,n, n.right, lvl);
             }
         }
+
+        private void SwapLeft(List<int> lst, Node r, Node n, List<int> lvl, int K)
+        {
+            lst.Insert(lst.IndexOf(r.root), n.root);
+            if (n.level % K == 0)
+            {
+                if (n.left != null)
+                {
+                    SwapRight(lst, n, n.left, lvl, K);
+                }
+                if (n.right != null)
+                {
+                    SwapLeft(lst, n, n.right, lvl, K);
+                }
+                n.Swap();
+            }
+            else
+            {
+                if (n.left != null)
+                {
+                    SwapLeft(lst, n, n.left, lvl, K);
+                }
+                if (n.right != null)
+                {
+                    SwapRight(lst, n, n.right, lvl, K);
+                }
+
+
+            }
+                
+            
+        }
+
+        private void SwapRight(List<int> lst, Node r, Node right, List<int> lvl, int K)
+        {
+            lst.Insert(lst.IndexOf(r.root) + 1, right.root);
+            if (right.level % K == 0)
+            {
+                if (right.left != null)
+                {
+                    SwapRight(lst, right, right.left, lvl, K);
+                }
+                if (right.right != null)
+                {
+                    SwapLeft(lst, right, right.right, lvl, K);
+                }
+                right.Swap();
+            }
+            else
+            {
+                if (right.left != null)
+                {
+                    SwapLeft(lst, right, right.left, lvl, K);
+                }
+                if (right.right != null)
+                {
+                    SwapRight(lst, right, right.right, lvl, K);
+                }
+            }
+                
+           
+
+        }
     }
 
 
@@ -174,16 +260,6 @@ namespace Search_Swap_Nodes
             left = null;
             right = null;
         }
-
-        public Node(int root,Node p, Node left, Node right, int level)
-        {
-            this.parent = p;
-            this.root = root;
-            this.level = level;
-            this.left = left;
-            this.right = right;
-        }
-
         public void Swap()
         {
             Node temp = left;
