@@ -1,0 +1,82 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+class Solution {
+
+    class SinglyLinkedListNode {
+        public int data;
+        public SinglyLinkedListNode next;
+
+        public SinglyLinkedListNode(int nodeData) {
+            this.data = nodeData;
+            this.next = null;
+        }
+    }
+
+    class SinglyLinkedList {
+        public SinglyLinkedListNode head;
+        public SinglyLinkedListNode tail;
+
+        public SinglyLinkedList() {
+            this.head = null;
+            this.tail = null;
+        }
+
+        public void InsertNode(int nodeData) {
+            SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
+
+            if (this.head == null) {
+                this.head = node;
+            } else {
+                this.tail.next = node;
+            }
+
+            this.tail = node;
+        }
+    }
+
+    static void PrintSinglyLinkedList(SinglyLinkedListNode node, string sep, TextWriter textWriter) {
+        while (node != null) {
+            textWriter.Write(node.data);
+
+            node = node.next;
+
+            if (node != null) {
+                textWriter.Write(sep);
+            }
+        }
+    }
+
+    // Complete the CompareLists function below.
+
+    /*
+     * For your reference:
+     *
+     * SinglyLinkedListNode {
+     *     int data;
+     *     SinglyLinkedListNode next;
+     * }
+     *
+     */
+    static bool CompareLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
+        SinglyLinkedListNode t1=head1;
+        SinglyLinkedListNode t2=head2;
+       
+        while(t1!=null && t2!=null)
+        {
+            if (t1.next==null && t2.next!=null)
+                return false;
+            if (t2.next==null && t1.next!=null)
+                return false;
+            if (t1.data!=t2.data)
+                return false;
+            t1=t1.next;
+            t2=t2.next;
+        }
+        return true;
+
+    }
+
+    static void Main(string[] args) {
