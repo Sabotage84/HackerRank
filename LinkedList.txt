@@ -33,12 +33,15 @@ class Solution {
             this.tail = null;
         }
 
-        public void InsertNode(int nodeData) {
+        public void InsertNode(int nodeData) 
+	{
             SinglyLinkedListNode node = new SinglyLinkedListNode(nodeData);
 
             if (this.head == null) {
                 this.head = node;
-            } else {
+            } 
+	    else 
+	    {
                 this.tail.next = node;
             }
 
