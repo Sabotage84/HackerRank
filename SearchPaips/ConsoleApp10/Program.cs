@@ -1,55 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ConsoleApp10
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            int[] arr = { 1, 5, 3, 4, 2 };
-            Console.WriteLine(pairs(2, arr));
+            //int[] arr = { 1, 5, 3, 4, 2 };
+            int k = 204619;
+            string[] arStr = File.ReadAllLines("test1.txt");
+            int[] arr = Array.ConvertAll(arStr[0].Split(' '), arrTemp => Convert.ToInt32(arrTemp));
+            Console.WriteLine(pairs(k, arr));
             Console.ReadKey();
         }
 
-        static int pairs(int k, int[] arr)
+        public static int pairs(int k, int[] arr)
         {
             int res = 0;
-            List<long> expList = new List<long>();
+            SortedList<long,int> expListPlus = new SortedList<long, int>();
+            SortedList<long, int> expListMinus = new SortedList<long, int>();
 
             for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i] < k)
+                if(expListPlus.ContainsKey(arr[i]))
                 {
-                    if (expList.Contains(arr[i]))
-                    { 
-                        res+=expList.FindAll(p => p == arr[i]).Count;
-                    }
-                    expList.Add(arr[i] + k);
-
-                }
-                else if (arr[i]+k>int.MaxValue)
-                {
-                    if (expList.Contains(arr[i]))
-                        res += expList.FindAll(p => p == arr[i]).Count;
-
-                    expList.Add(arr[i] - k);
-                    
+                    res++;
+                    expListPlus.Remove(arr[i]);
                 }
                 else
                 {
-                    if (expList.Contains(arr[i]))
-                        res += expList.FindAll(p => p == arr[i]).Count;
-                   
-                        expList.Add(arr[i] - k);
-                        expList.Add(arr[i] + k);
-                    
+                    if(arr[i] - k>0)
+                        expListMinus.Add(arr[i] - k,1);
                 }
-
-              
+                if(expListMinus.ContainsKey(arr[i]))
+                {
+                    res++;
+                    expListMinus.Remove(arr[i]);
+                }
+                else
+                {
+                    if (arr[i] + k<int.MaxValue)
+                        expListPlus.Add(arr[i] + k,1);
+                }
+                Console.WriteLine(expListPlus.Count + " " + expListMinus.Count);
                 
             }
 
