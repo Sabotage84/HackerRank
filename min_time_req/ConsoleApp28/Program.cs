@@ -12,10 +12,10 @@ namespace ConsoleApp28
         static void Main(string[] args)
         {
 
-            //string[] arStr = File.ReadAllLines("a.txt");
-            //int[] a = Array.ConvertAll(arStr[0].Split(' '), arrTemp => Convert.ToInt32(arrTemp));
-            long item = 10;
-            long[] a = { 1, 3, 4 };
+            string[] arStr = File.ReadAllLines("a.txt");
+            long[] a = Array.ConvertAll(arStr[0].Split(' '), arrTemp => Convert.ToInt64(arrTemp));
+            long item = 232897690;
+            //long[] a = { 1, 3, 4 };
 
 
             Console.WriteLine(triplets(a, item));
@@ -47,12 +47,16 @@ namespace ConsoleApp28
                 
                 {
                     if (item.Key > days)
+                    {
+                        Console.WriteLine("дней меньше чем число");
+                        Console.WriteLine(item.Key);
                         break;
+                    }
                     else
                     {
                         if (days % item.Key == 0)
                         {
-                            goal-=item.Value;
+                            goal -= item.Value;
                             if (goal <= 0)
                                 break;
                         }
@@ -71,7 +75,7 @@ namespace ConsoleApp28
             int res = -1;
             int left = 0;
             int right = arr.Length - 1;
-            //bool founded = false;
+           
             int med = right / 2;
 
             while (left <= right)
@@ -90,7 +94,7 @@ namespace ConsoleApp28
                     med = med + (right - med) / 2;
 
                 }
-                //Console.WriteLine(med);
+                
             }
             return res;
         }
