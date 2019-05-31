@@ -25,7 +25,9 @@ namespace ConsoleApp28
         static long triplets(long[] machines, long goal)
         {
             long days = 0;
+            Console.WriteLine("Изначальное необходимое количество: {0}", goal);
             Dictionary<long, long> dic = new Dictionary<long, long>();
+            Dictionary<long, long> maxDic = new Dictionary<long, long>();
             Array.Sort(machines);
 
 
@@ -39,22 +41,78 @@ namespace ConsoleApp28
                 }
 
             }
+            Console.WriteLine("Количество элементов в словаре: {0}", dic.Count);
+            long maxGoalsInOnePass = 0;
 
-            while (!(goal<= 0))
+            foreach (var item in dic)
             {
-                days++;
-                foreach (var item in dic)
-                
+                maxGoalsInOnePass += item.Value;
+                foreach (var it in dic)
                 {
-                    if (item.Key > days)
+                    if (it.Key == item.Key)
+                        break;
+                    
+                    maxGoalsInOnePass+=it.Value*(item.Key/it.Key);
+                }
+                maxDic.Add(item.Key, maxGoalsInOnePass);
+            }
+            Console.WriteLine("Максимум за один проход: {0}", maxGoalsInOnePass);
+
+            if (maxGoalsInOnePass >= goal)
+            {
+                Console.WriteLine("Выполняться буден за один проход...");
+                days = FindLastDays(maxDic, dic, goal,0);
+            }
+            else
+            {
+                long newGoals = goal - (goal / maxGoalsInOnePass) * maxGoalsInOnePass;
+                Console.WriteLine("Новое значение предметов: {0}", newGoals);
+
+                days = (goal / maxGoalsInOnePass) * dic.Last().Key;
+                Console.WriteLine("Пройдено дней: {0}", days);
+                days = FindLastDays(maxDic, dic, newGoals, days);
+
+            }
+            
+            return days;
+
+        }
+
+        private static long FindLastDays(Dictionary<long, long> dic, Dictionary<long, long> dic2, long goal, long v)
+        {
+            long res = v;
+            long tempGoal=1;
+            long maxDays;
+            foreach (var item in dic)
+            {
+                if (item.Value < goal)
+                {
+                    res = item.Key;
+                    tempGoal = goal - item.Value;
+                    Console.WriteLine("Прошло дней: {0}", res);
+                }
+                else
+                {
+                    maxDays = item.Key;
+                    Console.WriteLine("Максимум дней: {0}", maxDays);
+                    break;
+                }
+            }
+            goal = tempGoal;
+            Console.WriteLine("Оставшиеся вещи: {0}", goal);
+            while (!(goal <= 0))
+            {
+                
+                foreach (var item in dic2)
+
+                {
+                    if (item.Key > res)
                     {
-                        Console.WriteLine("дней меньше чем число");
-                        Console.WriteLine(item.Key);
                         break;
                     }
                     else
                     {
-                        if (days % item.Key == 0)
+                        if (res % item.Key == 0)
                         {
                             goal -= item.Value;
                             if (goal <= 0)
@@ -63,11 +121,12 @@ namespace ConsoleApp28
                     }
 
                 }
-
+                res++;
+                Console.WriteLine("Days: {0}", res);
+                Console.WriteLine("Goals: {0}", goal);
             }
 
-            return days;
-
+            return res;
         }
 
         static int NearestSearching(int[] arr, int num)
@@ -98,5 +157,7 @@ namespace ConsoleApp28
             }
             return res;
         }
+
+
     }
 }
