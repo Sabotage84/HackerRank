@@ -12,10 +12,30 @@ namespace ConsoleApp28
         static void Main(string[] args)
         {
 
-            string[] arStr = File.ReadAllLines("a.txt");
+            //string[] arStr = File.ReadAllLines("a.txt");
+            //long[] a = Array.ConvertAll(arStr[0].Split(' '), arrTemp => Convert.ToInt64(arrTemp));
+            //long item = 232897690;
+
+            //string[] arStr = File.ReadAllLines("10.txt");
+            //long[] a = Array.ConvertAll(arStr[0].Split(' '), arrTemp => Convert.ToInt64(arrTemp));
+            //long item = 923832496;
+
+
+            string[] arStr = File.ReadAllLines("9.txt");
             long[] a = Array.ConvertAll(arStr[0].Split(' '), arrTemp => Convert.ToInt64(arrTemp));
-            long item = 232897690;
+            long item = 433551589;
+            //long item = 12;
+            //long[] a = { 4, 5, 6 };
+
+            //long item = 5;
+            //long[] a = { 2, 3 };
+
+            //long item = 10;
             //long[] a = { 1, 3, 4 };
+
+
+            //long item = 306;
+            //long[] a = { 477, 448, 240, 858, 927, 703, 172, 68, 969, 943, 657, 499, 753, 777, 438, 199, 356, 435, 63, 292, 446, 164, 323, 511, 145, 607, 39, 832, 764, 692, 990, 240, 491, 581, 98, 769, 635, 621, 189, 603, 915, 197, 453, 667, 973, 890, 865, 328, 676, 928 };
 
 
             Console.WriteLine(triplets(a, item));
@@ -26,62 +46,89 @@ namespace ConsoleApp28
         {
             long days = 0;
             Console.WriteLine("Изначальное необходимое количество: {0}", goal);
-            Dictionary<long, long> dic = new Dictionary<long, long>();
-            Dictionary<long, long> maxDic = new Dictionary<long, long>();
+            Dictionary<long, long> machinesDic = new Dictionary<long, long>();
+
             Array.Sort(machines);
 
 
             for (int i = 0; i < machines.Length; i++)
             {
-                if (dic.ContainsKey(machines[i]))
-                    dic[machines[i]]++;
+                if (machinesDic.ContainsKey(machines[i]))
+                    machinesDic[machines[i]]++;
                 else
                 {
-                    dic.Add(machines[i], 1);
+                    machinesDic.Add(machines[i], 1);
                 }
 
             }
-            Console.WriteLine("Количество элементов в словаре: {0}", dic.Count);
-            long maxGoalsInOnePass = 0;
-
-            foreach (var item in dic)
-            {
-                maxGoalsInOnePass += item.Value;
-                foreach (var it in dic)
-                {
-                    if (it.Key == item.Key)
-                        break;
-                    
-                    maxGoalsInOnePass+=it.Value*(item.Key/it.Key);
-                }
-                maxDic.Add(item.Key, maxGoalsInOnePass);
-            }
-            Console.WriteLine("Максимум за один проход: {0}", maxGoalsInOnePass);
-
-            if (maxGoalsInOnePass >= goal)
-            {
-                Console.WriteLine("Выполняться буден за один проход...");
-                days = FindLastDays(maxDic, dic, goal,0);
-            }
-            else
-            {
-                long newGoals = goal - (goal / maxGoalsInOnePass) * maxGoalsInOnePass;
-                Console.WriteLine("Новое значение предметов: {0}", newGoals);
-
-                days = (goal / maxGoalsInOnePass) * dic.Last().Key;
-                Console.WriteLine("Пройдено дней: {0}", days);
-                days = FindLastDays(maxDic, dic, newGoals, days);
-
-            }
+            Console.WriteLine("Количество элементов в словаре: {0}", machinesDic.Count);
             
+
+
+            
+           days = FindDays(1, goal*machinesDic.First().Key/ machinesDic.First().Value, goal, machinesDic);
+           
+
             return days;
 
         }
 
+        private static long FindDays(long left, long right, long goal, Dictionary<long, long> machinesDic)
+        {
+            long res = (right - left) / 2 + left;
+            long resMin=-1;
+            
+            long items=0;
+            while (items != goal)
+            {
+                items = 0;
+                foreach (var item in machinesDic.Reverse())
+                {
+                    if (item.Key < res)
+                        items += (res / item.Key) * item.Value;
+                }
+                if (items > goal)
+                {
+                    right = res-1 ;
+                }
+                else if (items < goal)
+                {
+                    left = res+1;
+                }
+                else
+                {
+                    long m = res%machinesDic.First().Key;
+                    foreach (var item in machinesDic)
+                    {
+                        if (m > res % item.Key)
+                            m = res % item.Key;
+
+                    }
+                    return res - m;
+                    
+                }
+                res = (right - left) / 2 + left;
+                if (resMin == res)
+                    return res;
+                    resMin = res;
+                Console.WriteLine(res);
+                
+
+            }
+            return res;
+        }
+
+
+
+
+
+
+
+
         private static long FindLastDays(Dictionary<long, long> dic, Dictionary<long, long> dic2, long goal, long v)
         {
             long res = v;
-            long tempGoal=1;
+            long tempGoal = 1;
             long maxDays;
             foreach (var item in dic)
             {
@@ -102,7 +149,7 @@ namespace ConsoleApp28
             Console.WriteLine("Оставшиеся вещи: {0}", goal);
             while (!(goal <= 0))
             {
-                
+
                 foreach (var item in dic2)
 
                 {
@@ -134,7 +181,7 @@ namespace ConsoleApp28
             int res = -1;
             int left = 0;
             int right = arr.Length - 1;
-           
+
             int med = right / 2;
 
             while (left <= right)
@@ -153,7 +200,7 @@ namespace ConsoleApp28
                     med = med + (right - med) / 2;
 
                 }
-                
+
             }
             return res;
         }
