@@ -6,34 +6,47 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            long[] arr = { 3, 3, 9, 9, 5 };
-            long M = 7;
+            long[] arr = { 1,5,9 };
+            long M = 5;
             Console.WriteLine(maximumSum(arr, M));
             Console.ReadKey();
 
         }
-        static long maximumSum(long[] a, long m)
+       public static long maximumSum(long[] a, long m)
         {
             long res = 0;
-            long[] tempArr = new long[a.Length];
-            for (int i = 0; i < a.Length; i++)
+            long[] tempArr = new long[a.LongLength];
+            for (long i = 0; i < a.LongLength; i++)
             {
                 tempArr[i] = a[i] % m;
             }
-
-            long f = 0, s = 0;
-            for (int i = 0; i < a.Length; i++)
+            long l = 0;
+            List<long> resultsList = new List<long>();
+            while (l <= tempArr.LongLength)
             {
-                f += a[i];
-                s += tempArr[i];
-
+                for (long i = 0; i < tempArr.LongLength && i + l < tempArr.LongLength; i++)
+                {
+                    long sum = 0;
+                    for (long j = i; j <= l + i; j++)
+                    {
+                        sum += tempArr[j];
+                        sum %= m;
+                    }
+                    resultsList.Add(sum % m);
+                }
+                l++;
             }
-            Console.WriteLine(f % m);
-            Console.WriteLine(s % m);
+
+            foreach (var item in resultsList)
+            {
+                if (res < item)
+                    res = item;
+            }
+
             return res;
         }
     }
