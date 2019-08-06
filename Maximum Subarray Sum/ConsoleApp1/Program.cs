@@ -38,15 +38,30 @@ namespace ConsoleApp1
                     long tr = tempSum % m;
                     resList.Add(tempSum - tempArr[i]);
                     resList.Add(tr);
-                    long tt = 0;
-                    for (long j = tempindex; j < i; j++)
+                    // tr = tempArr[i] - 1;
+                    if (tr < tempArr[tempindex])
                     {
-                        tt += tempArr[j];
-                        if (tt >= tr)
+                        tempindex++;
+                        i = tempindex-1;
+                    }
+                    else
+                    {
+                        long tt = 0;
+                        for (long j = tempindex; j < i; j++)
                         {
-                            tempindex = j+1;
-                            i = j;
-                            break;
+                            tt += tempArr[j];
+                            if (tt == tr)
+                            {
+                                tempindex = j + 1;
+                                i = j;
+                                break;
+                            }
+                            else if(tt > tr)
+                                {
+                                    tempindex = j+1;
+                                    i = j;
+                                    break;
+                                }
                         }
                     }
                     tempSum = 0;
