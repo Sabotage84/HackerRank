@@ -19,6 +19,22 @@ namespace Tests
             long M = 5;
             Assert.AreEqual(4, Program.maximumSum(arr, M));
         }
+        [Test]
+        public void Test6()
+        {
+            long[] arr = {  9,3, 3, 9, 5 };
+            long M = 7;
+            Assert.AreEqual(6, Program.maximumSum(arr, M));
+        }
+
+        [Test]
+        public void Test7()
+        {
+            long[] arr = { 1, 1, 1, 1, 1,3,3 };
+            long M = 7;
+            Assert.AreEqual(6, Program.maximumSum(arr, M));
+        }
+
 
         [Test]
         public void Test2()

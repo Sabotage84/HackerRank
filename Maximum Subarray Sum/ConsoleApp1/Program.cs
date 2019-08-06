@@ -16,7 +16,58 @@ namespace ConsoleApp1
             Console.ReadKey();
 
         }
-       public static long maximumSum(long[] a, long m)
+
+        public static long maximumSum(long[] a, long m)
+        {
+            long res = 0;
+            long[] tempArr = new long[a.LongLength];
+            for (long i = 0; i < a.LongLength; i++)
+            {
+                tempArr[i] = a[i] % m;
+            }
+            long l = 0;
+            List<long> resList = new List<long>();
+            long tempSum = 0;
+            long tempindex=0;
+            for (long i = 0; i <tempArr.LongLength; i++)
+            {
+               
+                tempSum += tempArr[i];
+                if (tempSum >= m)
+                {
+                    long tr = tempSum % m;
+                    resList.Add(tempSum - tempArr[i]);
+                    resList.Add(tr);
+                    long tt = 0;
+                    for (long j = tempindex; j < i; j++)
+                    {
+                        tt += tempArr[j];
+                        if (tt >= tr)
+                        {
+                            tempindex = j+1;
+                            i = j;
+                            break;
+                        }
+                    }
+                    tempSum = 0;
+                }
+                else if (i == tempArr.LongLength-1)
+                    resList.Add(tempSum);
+
+            }
+
+            foreach (var item in resList)
+            {
+                if (res < item)
+                    res = item;
+            }
+
+           
+
+            return res;
+        }
+
+        public static long maximumSum_Brut(long[] a, long m)
         {
             long res = 0;
             long[] tempArr = new long[a.LongLength];
