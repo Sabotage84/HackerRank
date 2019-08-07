@@ -25,45 +25,31 @@ namespace ConsoleApp1
             {
                 tempArr[i] = a[i] % m;
             }
-            long l = 0;
+            
             List<long> resList = new List<long>();
             long tempSum = 0;
-            long tempindex=0;
+            
             for (long i = 0; i <tempArr.LongLength; i++)
             {
                
                 tempSum += tempArr[i];
                 if (tempSum >= m)
                 {
-                    long tr = tempSum % m;
+                    long tr = m-tempArr[i];
                     resList.Add(tempSum - tempArr[i]);
-                    resList.Add(tr);
-                    // tr = tempArr[i] - 1;
-                    if (tr < tempArr[tempindex])
+                    long tt = 0;
+                    for (long j = i-1; j >=0; j--)
                     {
-                        tempindex++;
-                        i = tempindex-1;
-                    }
-                    else
-                    {
-                        long tt = 0;
-                        for (long j = tempindex; j < i; j++)
+                        tt += tempArr[j];
+                        if (tt >= tr)
                         {
-                            tt += tempArr[j];
-                            if (tt == tr)
-                            {
-                                tempindex = j + 1;
-                                i = j;
-                                break;
-                            }
-                            else if(tt > tr)
-                                {
-                                    tempindex = j+1;
-                                    i = j;
-                                    break;
-                                }
+                            
+                            i = j;
+                            break;
                         }
+                        
                     }
+                  
                     tempSum = 0;
                 }
                 else if (i == tempArr.LongLength-1)

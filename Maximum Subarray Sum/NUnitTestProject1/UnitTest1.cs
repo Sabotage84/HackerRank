@@ -19,6 +19,15 @@ namespace Tests
             long M = 5;
             Assert.AreEqual(4, Program.maximumSum(arr, M));
         }
+
+        [Test]
+        public void Test8()
+        {
+            long[] arr = { 27, 17, 12, 1 };
+            long M = 29;
+            Assert.AreEqual(28, Program.maximumSum(arr, M));
+        }
+
         [Test]
         public void Test6()
         {
@@ -74,7 +83,7 @@ namespace Tests
         [Test]
         public void BigTest()
         {
-            int q = 10000;
+            
 
             string[] allstr = File.ReadAllLines("bigtest.txt");
             string[] allres = File.ReadAllLines("bigtestresults.txt");
@@ -112,7 +121,7 @@ namespace Tests
         [Test]
         public void SuperBigTest()
         {
-            int q = 50;
+           
 
             string[] allstr = File.ReadAllLines("Sbigtest.txt");
             string[] allres = File.ReadAllLines("Sbigtestresults.txt");
