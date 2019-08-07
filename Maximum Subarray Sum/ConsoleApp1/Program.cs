@@ -19,53 +19,23 @@ namespace ConsoleApp1
 
         public static long maximumSum(long[] a, long m)
         {
-            long res = 0;
-            long[] tempArr = new long[a.LongLength];
-            for (long i = 0; i < a.LongLength; i++)
+            long curr = 0;
+            SortedDictionary<long, long> sDict = new SortedDictionary<long, long>();
+            for (long i = 0; i < a.Length; i++)
             {
-                tempArr[i] = a[i] % m;
+                curr = (a[i] % m + curr) % m;
+                sDict[curr] = i;
             }
-            
-            List<long> resList = new List<long>();
-            long tempSum = 0;
-            
-            for (long i = 0; i <tempArr.LongLength; i++)
+            var keyArr = sDict.Keys.ToArray();
+            long max = keyArr.Last();
+            for (long i = 0; i < sDict.Keys.Count - 1; i++)
             {
-               
-                tempSum += tempArr[i];
-                if (tempSum >= m)
+                if (sDict[keyArr[i]] > sDict[keyArr[i + 1]])
                 {
-                    long tr = m-tempArr[i];
-                    resList.Add(tempSum - tempArr[i]);
-                    long tt = 0;
-                    for (long j = i-1; j >=0; j--)
-                    {
-                        tt += tempArr[j];
-                        if (tt >= tr)
-                        {
-                            
-                            i = j;
-                            break;
-                        }
-                        
-                    }
-                  
-                    tempSum = 0;
+                    max = Math.Max(max, (keyArr[i] - keyArr[i + 1] + m) % m);
                 }
-                else if (i == tempArr.LongLength-1)
-                    resList.Add(tempSum);
-
             }
-
-            foreach (var item in resList)
-            {
-                if (res < item)
-                    res = item;
-            }
-
-           
-
-            return res;
+            return max;
         }
 
         public static long maximumSum_Brut(long[] a, long m)
