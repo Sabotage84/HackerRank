@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "candys", "candys\candys.csproj", "{47C11E10-DC5D-4383-BB1F-BA0BBA2D5C67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject1", "NUnitTestProject1\NUnitTestProject1.csproj", "{B1AA98F8-1EFA-4979-AD07-B3BFC669FD1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47C11E10-DC5D-4383-BB1F-BA0BBA2D5C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C11E10-DC5D-4383-BB1F-BA0BBA2D5C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C11E10-DC5D-4383-BB1F-BA0BBA2D5C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C11E10-DC5D-4383-BB1F-BA0BBA2D5C67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1AA98F8-1EFA-4979-AD07-B3BFC669FD1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1AA98F8-1EFA-4979-AD07-B3BFC669FD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1AA98F8-1EFA-4979-AD07-B3BFC669FD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1AA98F8-1EFA-4979-AD07-B3BFC669FD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D038ACBC-7113-4E64-B210-64E3808DFF7A}
+	EndGlobalSection
+EndGlobal
