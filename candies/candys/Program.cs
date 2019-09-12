@@ -19,13 +19,13 @@ namespace candys
             long res = 0;
             if (m >= n || w >= n || m * w >= n)
                 return 1;
-            if (p >= n)
-            {
-                if (n % (m * n) == 0)
-                    return n / (m * n);
-                else
-                    return n / (m * n) + 1;
-            }
+            //if (p >= n)
+            //{
+            //    if (n % (m * n) == 0)
+            //        return n / (m * n);
+            //    else
+            //        return n / (m * n) + 1;
+            //}
             long target = Convert.ToInt64(Math.Ceiling(Math.Sqrt(n)));
 
             res = WhatWay(m, w, p, n, 0, 0);
@@ -47,7 +47,7 @@ namespace candys
                     w++;
                 else
                     m++;
-                bayWay += Convert.ToInt64(Math.Ceiling((double)n / (double)(m * w)));
+                
             }
             else
             {
@@ -72,12 +72,12 @@ namespace candys
                         w += b / 2;
                     }
                 }
-                bayWay += Convert.ToInt64(Math.Ceiling((double)n / (double)(m * w)));
             }
+            bayWay += Convert.ToInt64(Math.Ceiling((double)n / (double)(m * w)));
             if (strictWay <= bayWay)
                 return strictWay + steps;
             else
-               return WhatWay(m, n, p, n, bayWay, 0);
+               return WhatWay(m, n, p, n, bayWay, over);
         }
     }
 }
