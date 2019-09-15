@@ -39,7 +39,7 @@ namespace candys
             long strictWay = Convert.ToInt64(Math.Ceiling((double)n / (double)(m * w)));
             long bayWay = 0;
 
-            if (p > (m * w))
+            if (p >= (m * w))
             {
                 bayWay = Convert.ToInt64(Math.Ceiling((double)p / (double)(m * w)));
 
