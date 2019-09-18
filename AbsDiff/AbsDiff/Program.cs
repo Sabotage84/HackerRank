@@ -19,84 +19,21 @@ namespace AbsDiff
 
         static int minimumAbsoluteDifference(int[] arr)
         {
-            int[] tarr = arr.Distinct().ToArray();
-            if (tarr.Length < arr.Length)
-                return 0;
+            int n = arr.Length;
 
-            int[] sarr ;
-           
-           
-            int res = Math.Abs(arr[0] - arr[1]);
-            for (int i = 0; i < arr.Length-1; i++)
-            {
-                sarr = new int[arr.Length-i-1];
-                Array.Copy(arr, i+1,sarr, 0,arr.Length-1-i);
-                List<int> t = (sarr.ToList());
-                t.Sort();
-               
-                sarr = t.ToArray();
-                for (int k = 0; k < sarr.Length; k++)
-                {
-                    Console.Write(sarr[k]+" ");
-                }
-                Console.WriteLine();
-                if (sarr[0] > arr[i])
-                {
-                    if (res > Math.Abs(arr[i] - sarr[0]))
-                        res = Math.Abs(arr[i] - sarr[0]);
-                }
-                else if (sarr[sarr.Length - 1] < arr[i])
-                {
+        Array.Sort(arr);
 
-                    if (res > Math.Abs(arr[i] - sarr[sarr.Length - 1]))
-                        res = Math.Abs(arr[i] - sarr[sarr.Length - 1]);
-                }
-                else
-                {
-                    int temp = NearestSearching(sarr, arr[i]);
-                    Console.WriteLine("For {0} nearest is {1}", arr[i], temp);
-                    if (res > Math.Abs(arr[i] - temp))
-                        res = Math.Abs(arr[i] - temp);
-                }
-            }
+        int minAbsDiff = Math.Abs(arr[0] - arr[1]);
 
-
-            return res;
+        for(int i = 1; i < n - 1; i++){
+            int tempDiff = Math.Abs(arr[i] - arr[i + 1]);
+            if(tempDiff < minAbsDiff)
+                minAbsDiff = tempDiff;
+        }
+        return minAbsDiff;
         }
 
-        static int NearestSearching(int[] arr, int num)
-        {
-            int res = -1;
-            int left = 0;
-            int right = arr.Length - 1;
-
-            int med = right / 2;
-
-            while (left <= right)
-            {
-                if (arr[med] <= num && arr[med + 1] > num)
-                {
-                    if (Math.Abs(num - arr[med]) < (Math.Abs(num - arr[med + 1])))
-                        return arr[med];
-                    else
-                        return arr[med + 1];
-                }
-                else if (arr[med] > num)
-                {
-                    right = med;
-                    med = left + (med - left) / 2;
-
-                }
-                else
-                {
-                    left = med;
-                    med = med + (right - med) / 2;
-
-                }
-
-            }
-            return res;
-        }
+        
 
     }
 }
