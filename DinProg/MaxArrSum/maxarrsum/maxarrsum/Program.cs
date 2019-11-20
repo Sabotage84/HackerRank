@@ -18,69 +18,25 @@ namespace maxarrsum
         static int maxSubsetSum(int[] arr)
         {
             int res = 0;
-            int[] odds;
-            int[] evens = new int[arr.Length / 2]; ;
-            if (arr.Length % 2 == 0)
+            int oldMax;
+            int newMax;
+            int oldIndex;
+            int newIndex;
+
+
+            if (arr[0]>=arr[0]+arr[2])
             {
-                odds = new int[arr.Length / 2];
+                oldMax = arr[0];
+                oldIndex = 0;
             }
             else
             {
-                odds = new int[arr.Length / 2 + 1];
+                oldMax = arr[0] + arr[2];
+                oldIndex = 2;
             }
 
-            odds[0] = arr[0];
-            evens[0] = arr[1];
-
-            for (int i = 2; i < arr.Length; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    odds[i / 2] = arr[i] + odds[i / 2 - 1];
-                }
-                else
-                {
-                    evens[i / 2] = arr[i]+evens[i / 2-1];
-                }
-            }
-            for (int i = 0; i < odds.Length; i++)
-            {
-                if (res < odds[i])
-                    res = odds[i];
-            }
-
-            for (int i = 0; i < evens.Length; i++)
-            {
-                if (res < evens[i])
-                    res = evens[i];
-            }
-            int tempSum;
-            for (int i = 0; i <odds.Length;  i++)
-            {
-                tempSum = odds[i];
-                int t = i + 1;
-                for (int j = t; j < evens.Length; j++)
-                {
-                    tempSum += evens[j]-evens[t-1];
-                    if (tempSum > res)
-                        res = tempSum;
-                }
-            }
-
-
-            //Console.WriteLine("Нечетн");
-            //for (int i = 0; i < odds.Length; i++)
-            //{
-            //    Console.Write(odds[i]+" ");
-            //}
-            //Console.WriteLine();
-            //Console.WriteLine("Четные");
-            //for (int i = 0; i < evens.Length; i++)
-            //{
-
-            //    Console.Write(evens[i] + " ");
-            //}
-            //Console.WriteLine();
+            if()
+            
             return res;
         }
     }
