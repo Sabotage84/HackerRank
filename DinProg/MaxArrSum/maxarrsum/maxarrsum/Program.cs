@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,13 @@ namespace maxarrsum
     {
         static void Main(string[] args)
         {
-            int[] arr = { 3, 7, 4, 6, 5 };
+            int[] arr = { 500,1,-8,1,500 };
+
+            //StreamReader sr = new StreamReader("test2.txt");
+            //string s = sr.ReadLine();
+
+            //int[] arr = Array.ConvertAll(s.Split(' '), arrTemp => Convert.ToInt32(arrTemp));
+
             Console.WriteLine(maxSubsetSum(arr));
             Console.ReadKey();
         }
@@ -34,7 +41,8 @@ namespace maxarrsum
                 matrix[0, i] = Math.Max(matrix[0, i - 1], arr[i]);
                 if (arr[i] <= 0)
                 {
-                    matrix[1, i] = Math.Max(matrix[1, i - 2], matrix[0, i - 2] + arr[i]);
+                    matrix[1, i] = Math.Max(matrix[1, i - 2], matrix[1, i - 1]);
+                    matrix[1, i - 1] = matrix[1, i];
                 }
                 else
                     matrix[1, i] = Math.Max(matrix[1, i - 2] + arr[i], matrix[0, i - 2] + arr[i]);
