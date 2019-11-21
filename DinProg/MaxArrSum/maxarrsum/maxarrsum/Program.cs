@@ -24,19 +24,19 @@ namespace maxarrsum
 
         static int maxSubsetSum(int[] arr)
         {
-            int[] C = new int[arr.Length];
-            C[0] = arr[0];
-            C[1] = arr[1];
-            if (arr[2] > 0)
-                C[2] = Math.Max(arr[2], arr[2] + C[0]);
+            int[] C = new int[arr.Length + 2];
+            C[0] = 0;
+            C[1] = 0;
+            if (arr[0] > 0)
+                C[2] = Math.Max(arr[0], arr[0] + C[0]);
             else
                 C[2] = C[0];
-            for (int i = 3; i < arr.Length; i++)
+            for (int i = 1; i < arr.Length; i++)
             {
                 if (arr[i] > 0)
-                    C[i] = Math.Max(C[i - 2], C[i - 3]) + arr[i];
+                    C[i + 2] = Math.Max(C[i], C[i - 1]) + arr[i];
                 else
-                    C[i] = Math.Max(C[i - 2], C[i - 3]);
+                    C[i + 2] = Math.Max(C[i], C[i - 1]);
             }
 
             return Math.Max(C[C.Length - 1], C[C.Length - 2]);
