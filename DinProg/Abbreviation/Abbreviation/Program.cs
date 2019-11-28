@@ -10,8 +10,8 @@ namespace Abbreviation
     {
         static void Main(string[] args)
         {
-            string a = "lyylyyllyyylllyylyyylyllylyllllllyyylyllyyyylllllylyylyyllylyylllyhyllllyylllyllylyllylyllllyylylylyyylyllyyylylllyylylllyyllyylylyyllyylyyylllyllylyyllyllllyylylyylllllllyllyyyyyylllyyylylylylyyyyyyyymylyyyylyyyylyyyylyyyylylylylylyllylyylllyllyylylyyllyyyylylllyyyyyllllllyllyylllylyylyllllyyllllylyyyyyllllylylllyyyylyylyyyllyylyyyylylyyyylyyyyylyylllyyllylyyllyllyyyyyylylllylyyyyyllyylyyyyylyyylyylyylylylyyllllyylllyylylllyllyylylyllylllyllyyyyyylyyyllyllyyllyllyylyllyllyyylyyyyylylllyyylllyyyllylyllylylyyllylllylyyyyylyyyylyyyylyyyyylylllllyylyylyyyylyylyyylyylllllllyyyyyyyylyyylylllllylyrlyylllyylylllllylyylyylyyllylyyyyllyyyllylllyllylllylyyyyylylylyyllyyyyylllyyyllllylyllyyyllllyyllyyylllylyylyyyllllyllylllylyllylllyyllllyllyyymyylylllyylllllllyyyyylyyyllyyyyyyylylylyylylyylylyyllyyyllylylyyyylyyyyyyyyyyylllylylllllylllyylllyyllllllyylllllyllyyllyylyyllllyylyylyyllllyyyllllyyylylylylyylyllylllyyylylylylyyylyllllllylyllllyylyllylllyllyylylllylllyllllylyyylylllyyylllyylllllllyllyyy";
-            string b = "LYYLYYLYYYLLLYYLYYYYLLYLLLLLLYYYLYLLYYYYLLLLYLYLYYLLYLYLLYYLLLYYLLLLYLYLLYLYLLLLYYLYLLYYLYLLYLLLLYLYLLYLYYLLYYLLYYLYYYLLLYLYLYYLLYLLYYYLYLLLLLLLYLLYYYYYLLLYYYLYLYLYLYYYYYYYLYYYLYYYYLYYLYYYYLYYLYLYLYLLYLYYLLLYLLYYLYLYLLYYYLYLLLYYYYLLLLLLYLLYYLLLYLYYLYLLLLYLLLYLYYYYYLLLLLYLLLYYYYLYYLYYLLYYLYYYYLYLYYYYLYYYYYLYYLLLYYLLYLYLLYLLYYYYYLYLLYLYYYYYLLYYLYYYYLYYYLYYLYYLYLYLYYLLLLYYLLLYYLYLLLYLLYLYLYLLYLLLYLLYYYYYYLYYYLLYLYYLLYLLYLYLLYLLYYYLYYYYLLLLYYYLLLYYYLLYLYLLYLYLYYLLYLLLYLYYYYYLYYYYLYYYYLYYYYYLYLLLLLYYLYYLYYYLYYYYYLYYLLLLLLLYYYYYYYYLYYLYLLLLYLYLYYLLYYLYLLLLLYLYYLYYLYLLYLYYYLYYYLYLLLYLLYLLYLYYYYYLLYYYLLYYYYYLLYYYLLLLYLYLLYYYLLLLYYLLYYYLLLYLYYLYYYLLLYLLYLYLYLLYLLYYLLLYLLYYYYYLYLLLYYLLLLLLLYYYYYLYYLLYYYYYYLYYLLYYLYLYYLLYYYLLYYLYYYYLYYYYYYYYYYYLLLYYLLLLLYLLLYYLLLYYLLLLLYYLLLLYLYYLLYYLYYLLLYYLYYLYYLLLLYYYLLLLYYYYLYLYLYYYLLYLLLYYYLYLYLYLYYLYLLLLLYLYLLLYYYLLYLYLLYYLYLLYLLLYLLYLYYYLYLLLYYLLYYLLLLLLYLYY";
+            string a = "ERreEerREeerErrrrRRyeReErrerrereEEeRRErRrrereeeeerErereerReRereeeeCrreErREreeerrRrRERreeererererEeEEeerrerrereeRRerreeerrreRererereeSerEeeRereerrReErrrereErrerrrreererrsRRecerEreeRrrreRereerErrRRrrEeEererRrrreRerReRrereererereEeereEereesrERreReeerReErEeeeeRererReereRereerRrrRRerrerreeereEeeereerrEreeERreReRrEErRRerEereeeRreeErReerrEerEeEreerrTeeeEErreRErrerreeeeereeEeerERErRrereerreerRrrreerEreeRrErreeeRReRerrreerrEreerrerEeEeerreeeeEeerRrrerrsrerrereReREerEerrRerRErereRreerRreRReEeeeRerRereeerRerererrerrrreeReeERereeeesrrEerrrreeeeerrrrereeeeeerRrRrreeereRrreeseERrrrerReeeerreeeeereEerErrrRrreeeerRerrrrrErRreREeeerrrrrrrErrreerrRrereerrRrEEErsREeeerReEeErrrrRrRererereeererreereeRreerrerREeEReereerrrrrrereereeeerEeeeerreerSrReererrRereREreereErEReEReeeerrerEeeEeeRreeeRreeeEreeeeEreerrrEeereeerrrrERrRERReeerreEeJEEeSEeeeEeEeeRrRrrreeeRerrreerEreeererEereeeeRRrreReRrEerreEreeeerEErRrRrrrrerrereeEERErerreerrRrrreeeErEeErEreRrErRrErrreeeereeerrrrSeReeeeRerrrrerrEreerEeeeeeeerrreerreRerrREr";
+            string b = "ERREREERERRREERREERRERRREEEERRREREEECEREERRRERREEEERRREERRERRRRSERERERERERERRRRRREERREREERRREEERERRRRRRREREEESEREREREEEERRERERRRERRRRREEREREERERREERRERRERREREEEERRTEEEEREEREEEEEEEERERRRRERREERREREERRREREREEREEREEERRRERERERREEREERRERRERERERRRREEERRREERRRRREREREREEEEERRRRRRRREERRERRERRRERERRREEERRRRERRERERRRERRRREREERREEESREEREERRRERREEEERRERERREEREREEREERREEEEEERRRSRERREREEEERERREREEERRERREEEEEEEREEERERRERREREEJEESEEEEEEERRRREEREREEEEEERERRRRRRREEEEREERRREEREEERRREEEEREERRERRERRRSREEERERREERRRRER";
             Console.WriteLine(abbreviation(a, b));
             Console.ReadKey();
         }
@@ -19,68 +19,90 @@ namespace Abbreviation
         static string abbreviation(string a, string b)
         {
             string origB = b;
-            string origA = a;
-
+            string upperA = a.ToUpper();
+            bool lowFind = false;
+            bool upperFind = false;
             int t = 0;
             if (b.Length > a.Length)
                 return "NO";
-            a= a.ToLower();
-            b= b.ToLower();
+
             int innerIndex = 0;
             for (int i = 0; i < b.Length; i++)
             {
+                lowFind = false;
+                upperFind = false;
                 for (int j = innerIndex; j < a.Length; j++)
                 {
-                    if(b[i]==a[j])
+                    Console.WriteLine(a.Substring(0, j + 1));
+                    Console.WriteLine(b.Substring(0, i + 1));
+                    if (b[i] == a[j] && !lowFind)
                     {
-                        t = 0;
-                        //if (i==b.Length-1)
-                        //    return "YES";
-                        innerIndex = j+1;
+                        innerIndex = j + 1;
+                        upperFind = true;
                         break;
                     }
-                    if (j == a.Length - 1)
+                    else if (b[i] == a[j] && lowFind)
                     {
-                        Console.WriteLine("i={0}, j={0}", i, j);
-                        return "NO";
-                    }
-                    if (char.IsUpper(origA[j]))
-                    {
-                        if (j == 0)
-                            return "NO";
-
-                        if(origB[i-1]==origA[j] && t<2)
+                        if (!(i == b.Length - 1) && b[i + 1] != b[i])
                         {
-                            t++;
+                            innerIndex = j + 1;
+                            break;
+                        }
+                        else if (!(i == b.Length - 1) && b[i + 1] == b[i])
+                        {
+                            break;
                         }
                         else
-                        {
-                            return "NO";
-                        }
-                        //Console.WriteLine("i={0}, j={0}", i, j);
-                        //Console.WriteLine(origA.Substring(0, j+1));
-                        //Console.WriteLine(origB.Substring(0, i+1));
-
+                            break;
+                    }
+                    else if (!lowFind && b[i] == upperA[j])
+                    {
+                        lowFind = true;
+                        innerIndex = j + 1;
+                    }
+                    else if (char.IsUpper(a[j]) && !lowFind)
+                    {
+                        Console.WriteLine("1");
+                        Console.WriteLine(a.Substring(0, j+1));
+                        Console.WriteLine(b.Substring(0, i+1));
+                        return "NO";
+                    }
+                    else if (char.IsUpper(a[j]) && lowFind)
+                    {
+                        break;
+                    }
+                    if (j == a.Length - 1 && !lowFind)
+                    {
+                        Console.WriteLine("2");
+                        return "NO";
                     }
                 }
-                if (a.Length - innerIndex+1 < b.Length - i)
+                if (a.Length - innerIndex + 1 < b.Length - i)
+                {
+                    Console.WriteLine("3");
                     return "NO";
+                }
+
 
             }
 
             for (int i = innerIndex; i < a.Length; i++)
             {
-                if (char.IsUpper(origA[i]))
+                if (char.IsUpper(a[i]))
                 {
-
-                    if (origB[b.Length - 1] == origA[i] && t < 2)
+                    if (a[i] == b.Last() && upperFind)
                     {
-                        t++;
-                    }
-                    else
-                    {
+                        Console.WriteLine("4");
                         return "NO";
                     }
+                    else if (a[i] == b.Last() && !upperFind)
+                        upperFind = true;
+                    else
+                    {
+                        Console.WriteLine("5");
+                        return "NO";
+                    }
+
                 }
             }
 
