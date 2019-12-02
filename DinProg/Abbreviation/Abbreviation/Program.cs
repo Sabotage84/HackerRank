@@ -10,66 +10,55 @@ namespace Abbreviation
     {
         static void Main(string[] args)
         {
-            string a = "ERreEerREeerErrrrRRyeReErrerrereEEeRRErRrrereeeeerErereerReRereeeeCrreErREreeerrRrRERreeererererEeEEeerrerrereeRRerreeerrreRererereeSerEeeRereerrReErrrereErrerrrreererrsRRecerEreeRrrreRereerErrRRrrEeEererRrrreRerReRrereererereEeereEereesrERreReeerReErEeeeeRererReereRereerRrrRRerrerreeereEeeereerrEreeERreReRrEErRRerEereeeRreeErReerrEerEeEreerrTeeeEErreRErrerreeeeereeEeerERErRrereerreerRrrreerEreeRrErreeeRReRerrreerrEreerrerEeEeerreeeeEeerRrrerrsrerrereReREerEerrRerRErereRreerRreRReEeeeRerRereeerRerererrerrrreeReeERereeeesrrEerrrreeeeerrrrereeeeeerRrRrreeereRrreeseERrrrerReeeerreeeeereEerErrrRrreeeerRerrrrrErRreREeeerrrrrrrErrreerrRrereerrRrEEErsREeeerReEeErrrrRrRererereeererreereeRreerrerREeEReereerrrrrrereereeeerEeeeerreerSrReererrRereREreereErEReEReeeerrerEeeEeeRreeeRreeeEreeeeEreerrrEeereeerrrrERrRERReeerreEeJEEeSEeeeEeEeeRrRrrreeeRerrreerEreeererEereeeeRRrreReRrEerreEreeeerEErRrRrrrrerrereeEERErerreerrRrrreeeErEeErEreRrErRrErrreeeereeerrrrSeReeeeRerrrrerrEreerEeeeeeeerrreerreRerrREr";
-            string b = "ERREREERERRREERREERRERRREEEERRREREEECEREERRRERREEEERRREERRERRRRSERERERERERERRRRRREERREREERRREEERERRRRRRREREEESEREREREEEERRERERRRERRRRREEREREERERREERRERRERREREEEERRTEEEEREEREEEEEEEERERRRRERREERREREERRREREREEREEREEERRRERERERREEREERRERRERERERRRREEERRREERRRRREREREREEEEERRRRRRRREERRERRERRRERERRREEERRRRERRERERRRERRRREREERREEESREEREERRRERREEEERRERERREEREREEREERREEEEEERRRSRERREREEEERERREREEERRERREEEEEEEREEERERRERREREEJEESEEEEEEERRRREEREREEEEEERERRRRRRREEEEREERRREEREEERRREEEEREERRERRERRRSREEERERREERRRRER";
+            string a = "abcCaeCAccRkkKkkR";
+            string b = "CCARKR";
             Console.WriteLine(abbreviation(a, b));
             Console.ReadKey();
         }
 
         static string abbreviation(string a, string b)
         {
-            string res = "NO";
-
-            List<MyChar> astr = new List<MyChar>();
-            if (char.IsUpper(a[0]))
-                astr.Add(new MyChar(a[0], 1, 0));
+            if (MYabbreviation(a,b))
+                return "YES";
             else
-                astr.Add(new MyChar(char.ToUpper(a[0]), 0, 1));
+                return "NO";
+        }
 
-            for (int i = 1; i < a.Length; i++)
+        static bool MYabbreviation(string a, string b)
+        {
+            if (a.Length == 0 && b.Length == 0)
+                return true;
+            else if (a.Length == 0 && b.Length != 0)
+                return false;
+            if (b.Length==0)
             {
-                if(char.ToUpper(a[i])== char.ToUpper(a[i-1]))
+                for (int i = 0; i < a.Length; i++)
                 {
                     if (char.IsUpper(a[i]))
-                        astr.Last().H++;
-                    else
-                        astr.Last().L++;
+                        return false;
+                }
+                return true;
+            }
+            else
+            {
+                if (a.Last() == b.Last())
+                    return MYabbreviation(a.Substring(0, a.Length - 1), b.Substring(0, b.Length - 1));
+                else if (char.ToUpper(a.Last()) == b.Last())
+                {
+                    return (MYabbreviation(a.Substring(0, a.Length - 1), b.Substring(0, b.Length)) || MYabbreviation(a.Substring(0, a.Length - 1), b.Substring(0, b.Length - 1)));
+                }
+                else if (char.IsUpper(a.Last()))
+                {
+                    return false;
                 }
                 else
                 {
-                    astr.Add(new MyChar(char.ToUpper(a[i]),0, 0));
-                    if (char.IsUpper(a[i]))
-                        astr.Last().H++;
-                    else
-                        astr.Last().L++;
+                    return MYabbreviation(a.Substring(0, a.Length - 1), b.Substring(0, b.Length));
                 }
             }
-
-            foreach (var item in astr)
-            {
-                Console.WriteLine("{0}-> {1}  {2}", item.name, item.H, item.L);
-            }
-
-            return res;
+           
         }
 
-        class MyChar
-        {
-            public char name;
-            public int H;
-            public int L;
 
-            public MyChar(char name, int h, int l)
-            {
-                this.name = name;
-                H = h;
-                L = l;
-            }
-
-            public MyChar()
-            {
-
-            }
-        }
     }
 }
