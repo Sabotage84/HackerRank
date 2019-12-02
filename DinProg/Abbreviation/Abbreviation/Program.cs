@@ -10,18 +10,64 @@ namespace Abbreviation
     {
         static void Main(string[] args)
         {
-            string a = "abcCaeCAccRkkKkkR";
-            string b = "CCARKR";
+            string a = "Pi";
+            string b = "P";
             Console.WriteLine(abbreviation(a, b));
             Console.ReadKey();
         }
 
         static string abbreviation(string a, string b)
         {
-            if (MYabbreviation(a,b))
+            bool[,] matrix = new bool[b.Length+1 , a.Length+1];
+            matrix[0, 0] = true;
+            bool flag = true;
+            for (int i = 1; i < a.Length+1; i++)
+            {
+                if (flag &&  char.IsLower(a[i-1]))
+                {
+                    matrix[0, i] = true;
+                }
+                else
+                {
+                    matrix[0, i] = false;
+                    flag = false;
+                }
+            }
+
+            for (int i = 1; i < b.Length+1; i++)
+            {
+                matrix[i, 0] = false;
+            }
+
+            for (int i = 1; i < b.Length+1; i++)
+            {
+                for (int j = i; j < a.Length+1; j++)
+                {
+                    if(char.IsUpper(a[j-1]))
+                    {
+                        matrix[i, j] = matrix[i - 1, j - 1] && b[i-1] == a[j-1];
+                    }
+                    else
+                    {
+                        matrix[i, j] = (matrix[i, j - 1] || (matrix[i-1,j-1] && b[i-1]==char.ToUpper(a[j-1])));
+                    }
+                }
+            }
+
+            for (int i = 0; i < b.Length+1; i++)
+            {
+                for (int j = 0; j < a.Length+1; j++)
+                {
+
+                    Console.Write("{0}\t", matrix[i, j]);
+                }
+                Console.WriteLine();
+            }
+                if (matrix[b.Length, a.Length] == true)
                 return "YES";
             else
                 return "NO";
+
         }
 
         static bool MYabbreviation(string a, string b)
