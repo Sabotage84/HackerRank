@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Find_the_nearest_clone", "Find_the_nearest_clone\Find_the_nearest_clone.csproj", "{5E4CDA5F-9918-4C85-B53D-0846FFA3709A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E4CDA5F-9918-4C85-B53D-0846FFA3709A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E4CDA5F-9918-4C85-B53D-0846FFA3709A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E4CDA5F-9918-4C85-B53D-0846FFA3709A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E4CDA5F-9918-4C85-B53D-0846FFA3709A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {80AE8E5C-BFA6-4F3F-8591-5F1A180E471E}
+	EndGlobalSection
+EndGlobal
