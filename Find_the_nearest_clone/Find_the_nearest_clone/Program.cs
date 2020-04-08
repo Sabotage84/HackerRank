@@ -15,7 +15,10 @@ namespace Find_the_nearest_clone
         static int findShortest(int graphNodes, int[] graphFrom, int[] graphTo, long[] ids, int val)
         {
             int res = -1;
+            for (int i = 0; i < ids.Length; i++)
+            {
 
+            }
 
             return res;
         }
