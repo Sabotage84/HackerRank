@@ -19,7 +19,7 @@ namespace Find_the_nearest_clone
         class Node
         {
             public long color;
-            public int[] neighbors;
+            public List<int> neighbors;
         }
 
         static int findShortest(int graphNodes, int[] graphFrom, int[] graphTo, long[] ids, int val)
@@ -43,6 +43,12 @@ namespace Find_the_nearest_clone
                 if (tempVal == ids[i])
                     tempRes++;
             }
+            for (int i = 0; i < graphTo.Length; i++)
+            {
+                nodes[graphFrom[i]].neighbors.Add(graphTo[i]);
+                nodes[graphTo[i]].neighbors.Add(graphFrom[i]);
+            }
+
             if (tempRes >= 2)
             {
 
