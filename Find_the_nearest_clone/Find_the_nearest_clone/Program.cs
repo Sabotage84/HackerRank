@@ -29,7 +29,7 @@ namespace Find_the_nearest_clone
             int tempRes = 0;
             Node[] nodes = new Node[graphNodes];
             Queue<int> nodesForCheck = new Queue<int>();
-
+            List<int> interstingNodes = new List<int>();
             nodesForCheck.Enqueue(3); // очередь 3
             nodesForCheck.Enqueue(5); // очередь 3, 5
             nodesForCheck.Enqueue(8); // очередь 3, 5, 8
@@ -41,13 +41,18 @@ namespace Find_the_nearest_clone
             {
                 nodes[i].color = ids[i];
                 if (tempVal == ids[i])
+                {
                     tempRes++;
+                    interstingNodes.Add(i);
+                }
             }
             for (int i = 0; i < graphTo.Length; i++)
             {
                 nodes[graphFrom[i]].neighbors.Add(graphTo[i]);
                 nodes[graphTo[i]].neighbors.Add(graphFrom[i]);
             }
+
+
 
             if (tempRes >= 2)
             {
