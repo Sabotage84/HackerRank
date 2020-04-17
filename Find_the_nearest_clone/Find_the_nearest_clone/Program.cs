@@ -16,15 +16,6 @@ namespace Find_the_nearest_clone
             long[] inds = { 1, 2, 3, 3, 2 };
             int v = 2;
             
-            //int n = 4;
-            //int[] gf = { 1, 1, 4 };
-            //int[] gt = { 2,3,2};
-            //long[] inds = {1,2,1,1 };
-            //int v = 1;
-            
-            //string s = "1 2 1 1";
-            //long[] ids = Array.ConvertAll(s.Split(' '), idsTemp => Convert.ToInt64(idsTemp));
-            //long[] ids = Array.ConvertAll(Console.ReadLine().Trim(' ').Split(' '), idsTemp => Convert.ToInt64(idsTemp))
             Console.WriteLine(findShortest(n,gf,gt,inds,v));
             Console.ReadLine();
         }
