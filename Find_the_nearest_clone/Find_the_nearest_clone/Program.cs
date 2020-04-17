@@ -60,6 +60,9 @@ namespace Find_the_nearest_clone
                 nodes[graphFrom[i]-1].neighbors.Add(graphTo[i]-1);
                 nodes[graphTo[i]-1].neighbors.Add(graphFrom[i]-1);
             }
+
+            ShowGraf(nodes);
+
             if (tempRes >= 2)
             {
                 foreach (var item in interstingNodes)
@@ -116,5 +119,18 @@ namespace Find_the_nearest_clone
                 return -1;
         }
 
+        private static void ShowGraf(Node[] nodes)
+        {
+            for (int i = 0; i < nodes.Length; i++)
+            {
+                Console.WriteLine("Node number: {0}, node color: {1}, node check: {2}", i, nodes[i].color, nodes[i].checkedN);
+                Console.Write("neighbors: ");
+                foreach (var item in nodes[i].neighbors)
+                {
+                    Console.Write(item + " ");
+                }
+                Console.WriteLine();
+            }
+        }
     }
 }
