@@ -95,15 +95,17 @@ namespace Find_the_nearest_clone
                                 nodes[tempNod].checkedN = true;
                                 t1.AddRange(nodes[tempNod].neighbors);
                             }
-                            if (nodesForCheck.Count == 0)
-                            {
-                                tempres++;
-                                foreach (var nod in t1)
+                            
+                        }
+                        if (nodesForCheck.Count == 0)
+                        {
+                            tempres++;
+                            foreach (var nod in t1)
 
-                                {
-                                    nodesForCheck.Enqueue(nod);
-                                }
+                            {
+                                nodesForCheck.Enqueue(nod);
                             }
+                            t1.Clear();
                         }
                     }
 
