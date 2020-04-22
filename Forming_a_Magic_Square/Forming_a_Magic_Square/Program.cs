@@ -18,11 +18,60 @@ namespace Forming_a_Magic_Square
             if (CheckMatrix(s))
                 return res;
             else
-                res = CorrectMatrix();
+                res = CorrectMatrix(s);
             return res;
         }
 
-        public static int CorrectMatrix()
+        public static int CorrectMatrix(int[][] s)
+        {
+            int res = 0;
+            res += Math.Abs(5 - s[2][2]);
+
+            //find 9 position
+            int t1 = Math.Abs(Math.Min(s[0][1], s[2][1]) - 1) + Math.Abs(Math.Max(s[0][1], s[2][1]) - 9);
+            int t2 = Math.Abs(Math.Min(s[1][0], s[1][2]) - 1) + Math.Abs(Math.Max(s[1][0], s[1][2]) - 9);
+            if (t1 < t2)
+            {
+                if (s[0][1] >= s[2][1])
+                {
+                    res += Math.Abs(9 - s[0][1]);
+                    res += Math.Abs(1 - s[2][1]);
+                    s[0][1] = 9;
+                    s[2][1] = 1;
+                    res += FindAllMatrix(s,0,1);
+                }
+                else
+                {
+                    res += Math.Abs(1 - s[0][1]);
+                    res += Math.Abs(9 - s[2][1]);
+                    s[0][1] = 1;
+                    s[2][1] = 9;
+                    res += FindAllMatrix(s,2,1);
+                }
+            }
+            else if(t1>t2)
+            {
+                if (s[1][0] >= s[1][2])
+                {
+                    res += Math.Abs(9 - s[1][0]);
+                    res += Math.Abs(1 - s[1][2]);
+                    s[1][0] = 9;
+                    s[1][2] = 1;
+                    res += FindAllMatrix(s,1,0);
+                }
+                else
+                {
+                    res += Math.Abs(1 - s[1][0]);
+                    res += Math.Abs(9 - s[1][2]);
+                    s[1][0] = 1;
+                    s[1][2] = 9;
+                    res += FindAllMatrix(s,1,2);
+                }
+            }
+            return res;
+        }
+
+        private static int FindAllMatrix(int[][] s, int v1, int v2)
         {
             throw new NotImplementedException();
         }
