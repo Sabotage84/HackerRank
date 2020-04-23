@@ -94,5 +94,20 @@ namespace Forming_a_Magic_Square
 
             return false;
         }
+
+        public static int SubtractMatrix(int[][] s1, int[][] s2)
+        {
+            int res = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    res += Math.Abs(s1[i][j] - s2[i][j]);
+
+                }
+            }
+            return res;
+        }
+        
     }
 }

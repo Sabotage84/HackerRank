@@ -42,5 +42,25 @@ namespace tests
 
             Assert.AreEqual(false, Program.CheckMatrix(s1));
         }
+
+        [TestMethod]
+        public void TestSubtractMatrix()
+        {
+            int[][] s1 =
+                {
+                    new int[] { 1, 1, 1},
+                    new int[] { 1, 9, 1},
+                    new int[] { 1, 1, 1}
+                };
+
+            int[][] s2 =
+                {
+                    new int[] { 1, 1, 1},
+                    new int[] { 1, 1, 1},
+                    new int[] { 1, 1, 1}
+                };
+
+            Assert.AreEqual(8, Program.SubtractMatrix(s1,s2));
+        }
     }
 }
