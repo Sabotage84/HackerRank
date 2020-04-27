@@ -10,14 +10,24 @@ namespace DesignerPDFViewer
     {
         static void Main(string[] args)
         {
+            int[] H = { 1, 3, 1, 3, 1, 4, 1, 3, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+            string s = "abc";
+            Console.WriteLine(designerPdfViewer(H, s));
+            Console.ReadLine();
         }
 
         static int designerPdfViewer(int[] h, string word)
         {
-            int res = 0;
+            
+            int hmax=0;
+            for (int i = 0; i < word.Length; i++)
+            {
+               
+                if ((h[Convert.ToInt32(word[i]) - 97]) > hmax)
+                    hmax = h[Convert.ToInt32(word[i]) - 97];
+            }
 
-
-            return res;
+            return hmax*word.Length;
         }
     }
 }
