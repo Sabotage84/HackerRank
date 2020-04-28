@@ -16,7 +16,18 @@ namespace UtopianTree
 
         static int utopianTree(int n)
         {
+            int res = 1;
+            int i = 1;
+            while (i<n)
+            {
+                if (i % 2 == 0)
+                    res++;
+                else
+                    res *= 2;
+                i++;
+            }
 
+            return res;
 
         }
     }
