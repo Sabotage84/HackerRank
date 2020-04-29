@@ -14,8 +14,16 @@ namespace AngryProfessor
 
         static string angryProfessor(int k, int[] a)
         {
-
-
+            int t = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] <= 0)
+                    t++;
+            }
+            if (t < k)
+                return "YES";
+            else
+                return "NO";
         }
 
     }
