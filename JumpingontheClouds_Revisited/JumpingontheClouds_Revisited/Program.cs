@@ -15,6 +15,23 @@ namespace JumpingontheClouds_Revisited
         static int jumpingOnClouds(int[] c, int k)
         {
             int res = 100;
+            int i= 0;
+            while (true)
+            {
+                if ((i+k)%(c.Length-1)==0)
+                {
+                    i = c.Length - 1;
+                }
+                else
+                {
+                    i = (i + k) % (c.Length - 1);
+                }
+                if (c[i] == 1)
+                    res -= 3;
+                else
+                    res--;
+                if (i==0)
+            }
 
             return res;
         }
