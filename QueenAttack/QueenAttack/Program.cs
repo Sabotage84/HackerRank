@@ -24,59 +24,79 @@ namespace QueenAttack
             int res = 0;
             int s1200 = 0;
             int e1200 = n;
-            int s1330 = r_q + c_q - n-1;
-            int e1330 = n;
+            int s1330;
+            int e1330;
+            if (r_q + c_q > n)
+            {
+                s1330 = r_q + c_q - n - 1;
+                e1330 = n;
+            }
+            else
+            {
+                s1330 = 0;
+                e1330 = r_q + c_q - 1;
+            }
             int s1500 = 0;
             int e1500 = n;
-            int s1030 = 0;
-            int e1030 = n - (r_q - c_q);
 
+            int s1030;
+            int e1030;
+            if (r_q - c_q >= 0)
+            {
+                s1030 = 0;
+                e1030 = n - (r_q - c_q);
+            }
+            else
+            {
+                s1030 = Math.Abs(r_q - c_q);
+                e1030 = n;
+            }
             for (int i = 0; i < k; i++)
             {
-                if (obstacles[i][0]==r_q)
+                if (obstacles[i][0] == r_q)
                 {
-                    if (obstacles[i][1]>s1500 && obstacles[i][1]<c_q)
+                    if (obstacles[i][1] > s1500 && obstacles[i][1] < c_q)
                     {
                         s1500 = obstacles[i][1];
                     }
 
-                    else if (c_q<obstacles[i][1] && e1500>obstacles[i][1])
+                    else if (c_q < obstacles[i][1] && e1500 > obstacles[i][1])
                     {
-                        e1500 = obstacles[i][1];
+                        e1500 = obstacles[i][1] - 1;
                     }
                 }
 
-                if (obstacles[i][1]==c_q)
+                if (obstacles[i][1] == c_q)
                 {
-                    if (obstacles[i][0]>s1200 && obstacles[i][0]<r_q)
+                    if (obstacles[i][0] > s1200 && obstacles[i][0] < r_q)
                     {
                         s1200 = obstacles[i][0];
                     }
-                    else if (obstacles[i][0]>r_q && obstacles[i][0]<e1200)
+                    else if (obstacles[i][0] > r_q && obstacles[i][0] < e1200)
                     {
-                        e1200 = obstacles[i][0];
+                        e1200 = obstacles[i][0] - 1;
                     }
                 }
 
-                if (obstacles[i][0]+ obstacles[i][0]==r_q+c_q)
+                if (obstacles[i][0] + obstacles[i][1] == r_q + c_q)
                 {
 
-                    if (obstacles[i][0]>s1330 && obstacles[i][0]<r_q)
+                    if (obstacles[i][0] > s1330 && obstacles[i][0] < r_q)
                     {
                         s1330 = obstacles[i][0];
                     }
-                    else if (obstacles[i][0] < e1330 && obstacles[i][0] > r_q)
+                    if (obstacles[i][0] < e1330 && obstacles[i][0] > r_q)
                     {
-                        e1330 = obstacles[i][0];
+                        e1330 = obstacles[i][0] - 1;
                     }
                 }
 
-                if (obstacles[i][0] - obstacles[i][0] == r_q - c_q)
+                if (obstacles[i][0] - obstacles[i][1] == r_q - c_q)
                 {
                     if (obstacles[i][1] > s1030 && obstacles[i][1] < c_q)
-                        s1330 = obstacles[i][1];
-                    else if (obstacles[i][1] < e1030 && obstacles[i][1] > c_q)
-                        e1030 = obstacles[i][1];
+                        s1030 = obstacles[i][1];
+                    if (obstacles[i][1] < e1030 && obstacles[i][1] > c_q)
+                        e1030 = obstacles[i][1] - 1;
                 }
             }
 
