@@ -10,16 +10,18 @@ namespace TaumAndBday
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(taumBday(27984, 1402, 619246, 615589, 247954));
+            Console.ReadKey();
         }
         public static long taumBday(int b, int w, int bc, int wc, int z)
         {
             long res = 0;
             if (wc > bc && bc + z < wc)
-                res= b * bc + (bc + z) * w;
+                res= ((long)b * (long)bc) +( (long)(bc + z) * (long)w);
             else if (bc > wc && wc + z < bc)
-                res= wc * w + (wc + z) * b;
+                res= ((long)wc * (long)w) + ((long)(wc + z) * (long)b);
             else
-                res= b * bc + w * wc;
+                res=((long)b * (long)bc) +( (long)w * (long)wc);
             return res;
             
         }
