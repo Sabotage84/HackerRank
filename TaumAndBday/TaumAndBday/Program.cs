@@ -14,8 +14,14 @@ namespace TaumAndBday
         public static long taumBday(int b, int w, int bc, int wc, int z)
         {
             long res = 0;
-
+            if (wc > bc && bc + z < wc)
+                res= b * bc + (bc + z) * w;
+            else if (bc > wc && wc + z < bc)
+                res= wc * w + (wc + z) * b;
+            else
+                res= b * bc + w * wc;
             return res;
+            
         }
     }
 }
