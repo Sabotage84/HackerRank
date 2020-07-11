@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9377C59F-097E-4C4B-9FB1-65F9637ABDB3}</ProjectGuid>
+    <ProjectGuid>{600A1E3A-33D7-41DD-BEA4-6B30EBB584C7}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>QueenAttack</RootNamespace>
-    <AssemblyName>QueenAttack</AssemblyName>
+    <RootNamespace>ServiceLane</RootNamespace>
+    <AssemblyName>ServiceLane</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

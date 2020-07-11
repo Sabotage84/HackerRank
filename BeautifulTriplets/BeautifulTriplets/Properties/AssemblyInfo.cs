@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные с этой сборкой.
-[assembly: AssemblyTitle("QueenAttack")]
+[assembly: AssemblyTitle("BeautifulTriplets")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("QueenAttack")]
+[assembly: AssemblyProduct("BeautifulTriplets")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID представляет идентификатор typelib, если этот проект доступен из модели COM
-[assembly: Guid("9377c59f-097e-4c4b-9fb1-65f9637abdb3")]
+[assembly: Guid("b4f3f1ab-ff7d-442f-8873-bd5bd10d1402")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
