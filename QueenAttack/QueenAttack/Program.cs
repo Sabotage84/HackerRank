@@ -15,6 +15,14 @@ namespace QueenAttack
         static int queensAttack(int n, int k, int r_q, int c_q, int[][] obstacles)
         {
 
+            int res = 0;
+            int[,] matrix = new int[n,n];
+            for (int i = 0; i < k; i++)
+            {
+                matrix[obstacles[i][0], obstacles[i][1]] = 1;
+            }
+
+            return res;
 
         }
     }
