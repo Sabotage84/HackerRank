@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace HalloweenSale
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Console.WriteLine(howManyGames(20, 3, 6, 85));
             Console.ReadLine();
         }
-        static int howManyGames(int p, int d, int m, int s)
+        public static int howManyGames(int p, int d, int m, int s)
         {
             int res = 0;
             while (s>=m)
