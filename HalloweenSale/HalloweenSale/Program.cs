@@ -16,13 +16,13 @@ namespace HalloweenSale
         public static int howManyGames(int p, int d, int m, int s)
         {
             int res = 0;
-            while (s>=m)
+            while (s>=p)
             {
                 s -= p;
                 res++;
                 if (p > m)
                     p -= d;
-                else
+                if (p<=m)
                     p = m;
             }
 
