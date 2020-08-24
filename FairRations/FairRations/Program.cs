@@ -1,0 +1,23 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FairRations
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+        }
+
+        static int fairRations(int[] B)
+        {
+            int res = 0;
+
+
+            return res;
+        }
+    }
+}
