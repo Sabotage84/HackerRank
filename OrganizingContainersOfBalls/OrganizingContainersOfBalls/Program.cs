@@ -10,6 +10,11 @@ namespace OrganizingContainersOfBalls
     {
         static void Main(string[] args)
         {
+            int[][] t1 = new int[2][];
+            t1[0] = new { 999336263, 998799923 };
+           
+998799923 999763019
+
         }
 
         static string organizingContainers(int[][] container)
