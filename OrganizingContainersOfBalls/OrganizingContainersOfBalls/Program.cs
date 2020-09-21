@@ -10,10 +10,11 @@ namespace OrganizingContainersOfBalls
     {
         static void Main(string[] args)
         {
+            int[] a =  { 1, 2 };
             int[][] t1 = new int[2][];
-            t1[0] = new { 999336263, 998799923 };
+            
            
-998799923 999763019
+
 
         }
 
@@ -21,26 +22,48 @@ namespace OrganizingContainersOfBalls
         {
            
             long l = 0;
-            bool flag = true;
+            bool flag = false;
             long n = 0;
+            long[] pos = new long[container.Length];
+            long[] need = new long[container.Length];
             for (int i = 0; i < container.Length; i++)
             {
                 for (int j = 0; j < container.Length; j++)
                 {
                     l += container[i][j];
-                    l -= container[i][i];
                     n += container[j][i];
-                    n -= container[i][i];
                 }
-                if (l - n != 0)
-                    flag = false;
+                pos[i] = l;
+                need[i] = n;
                 l = 0;
                 n = 0;
             }
-            if (flag)
-                return "Possible";
-            else
-                return "Impossible";
+
+            for (int i = 0; i < container.Length; i++)
+            {
+                for (int j = 0; j < container.Length; j++)
+                {
+                    l = pos[i] - container[i][j];
+                    n = need[j] - container[i][j];
+                    if (l-n==0)
+                    {
+                        flag = true;
+                        break;
+                    }
+                }
+                if (flag)
+                {
+                    l = 0;
+                    n = 0;
+                    flag = false;
+                }
+                else
+                {
+                    return "Impossible";
+                }
+            }
+
+            return "Possible";
 
         }
     }
