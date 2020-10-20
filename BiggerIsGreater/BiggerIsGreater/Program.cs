@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BiggerIsGreater
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             biggerIsGreater("ab");
             Console.ReadLine();
         }
-        static string biggerIsGreater(string w)
+        public static string biggerIsGreater(string w)
         {
             
             int[] arr = new int[w.Length];
