@@ -65,7 +65,15 @@ namespace USqlCSharpUdoUnitTestProject1
         [TestMethod]
         public void TestMethod1()
         {
-            Assert.AreEqual("ba", Program.biggerIsGreater("ab"));
+            string[] teststrings = new string[100];
+            string[] answstrings = new string[100];
+            teststrings = File.ReadAllLines("test100.txt");
+            answstrings= File.ReadAllLines("answ100.txt");
+            for (int i = 0; i < 100; i++)
+            {
+                Assert.AreEqual(answstrings[i], Program.biggerIsGreater(teststrings[i]));
+            }
+            
         }
     }
 }

@@ -10,7 +10,9 @@ namespace BiggerIsGreater
     {
         static void Main(string[] args)
         {
-            biggerIsGreater("ab");
+            Console.WriteLine(biggerIsGreater("ehdegnmorgafrjxvksc"));
+            Console.WriteLine("ehdegnmorgafrjxvsck");
+            Console.WriteLine( "ehdegnmorgafrjxvsck" ==biggerIsGreater("ehdegnmorgafrjxvksc"));
             Console.ReadLine();
         }
         public static string biggerIsGreater(string w)
