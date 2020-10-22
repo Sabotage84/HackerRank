@@ -23,34 +23,48 @@ namespace BiggerIsGreater
             {
                 arr[i] = w[i];
             }
-            
-
-            for (int i = arr.Length-1; i >0; i--)
+            int max = arr[arr.Length - 1];
+            int imax = arr.Length - 1;
+            for (int i = w.Length-2; i >-1 ; i--)
             {
-                for (int j = i-1; j > -1; j--)
+                if (max<=arr[i])
                 {
-                    if(arr[i]>arr[j])
+                    max = arr[i];
+                    imax = i;
+                }
+                else
+                {
+                    int imin=imax;
+                    int minras=max-arr[i];
+                    for (int j = i+1; j < arr.Length; j++)
                     {
-                        int t = arr[i];
-                        arr[i] = arr[j];
-                        arr[j] = t;
-                        string s1 = "";
-                        for (int k = 0; k <= j; k++)
+                        if (arr[j]-arr[i]>0 && arr[j]-arr[i]<minras)
                         {
-                            s1 += (char)arr[k];
+                            imin = j;
+                            minras = arr[j] - arr[i];
                         }
-                        string s2 = "";
-                        for (int k = j+1; k < arr.Length; k++)
-                        {
-                            s2 += (char)arr[k];
-                        }
-                        char[] CH = s2.ToCharArray();
-                        Array.Sort(CH);
-                        s2 = new string(CH);
-                        return s1 + s2;
                     }
+                    int t = arr[i];
+                    arr[i] = arr[imin];
+                    arr[imin] = t;
+                    string s1 = "";
+                    for (int k = 0; k <= i; k++)
+                    {
+                        s1 += (char)arr[k];
+                    }
+                    string s2 = "";
+                    for (int k = i+1; k < arr.Length; k++)
+                    {
+                        s2 += (char)arr[k];
+                    }
+                    char[] CH = s2.ToCharArray();
+                    Array.Sort(CH);
+                    s2 = new string(CH);
+                    return s1 + s2;
                 }
             }
+
+            
         return "no answer";
         }
 
