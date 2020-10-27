@@ -34,6 +34,7 @@ namespace BiggerIsGreater
                 }
                 else
                 {
+					//for tests
                     int imin=imax;
                     int minras=max-arr[i];
                     for (int j = i+1; j < arr.Length; j++)
