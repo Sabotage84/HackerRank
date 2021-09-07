@@ -18,13 +18,11 @@ namespace ReverseDoublyLinkedList
     public class Result
     {
 
-        LinkedList<int> lst = new LinkedList<int>();
-
         public class DoublyLinkedListNode
         {
-             int data;
-             DoublyLinkedListNode next;
-             DoublyLinkedListNode prev;
+             public int data;
+             public DoublyLinkedListNode next;
+             public DoublyLinkedListNode prev;
         }
 
 
@@ -48,7 +46,42 @@ namespace ReverseDoublyLinkedList
      */
     public DoublyLinkedListNode reverse(DoublyLinkedListNode llist)
         {
-            return llist;
+            DoublyLinkedListNode temp = llist;
+            while (true)
+            {
+                //Console.Write("Temp=" + temp.data);
+                //if (temp.prev != null)
+                //    Console.Write(" Temp.prev=" + temp.prev.data);
+                //else
+                //    Console.Write(" Temp.prev=NULL");
+                //if (temp.next != null)
+                //    Console.Write(" Temp.next=" + temp.next.data);
+                //else
+                //    Console.Write(" Temp.next=NULL");
+                //Console.WriteLine();
+                DoublyLinkedListNode t2 = temp.next;
+                temp.next = temp.prev;
+                temp.prev = t2;
+                if (temp.prev != null)
+                    temp = temp.prev;
+                else
+                    break;
+
+            }
+
+            //if (temp != null)
+            //    Console.Write("Temp=" + temp.data);
+            //if (temp.prev != null)
+            //    Console.Write(" Temp.prev=" + temp.prev.data);
+            //else
+            //    Console.Write(" Temp.prev=NULL");
+            //if (temp.next != null)
+            //    Console.Write(" Temp.next=" + temp.next.data);
+            //else
+            //    Console.Write(" Temp.next=NULL");
+            //Console.WriteLine();
+
+            return temp;
         }
     }
 }       
