@@ -10,6 +10,8 @@ namespace DetectCycle
     {
         static void Main(string[] args)
         {
+            //не сделано так как нет реализации на C#
+            //сделать при проходе на питоне
         }
     }
 }
