@@ -4,15 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A2868C48-338E-4EAC-9277-E25789D6E817}</ProjectGuid>
+    <ProjectGuid>{9D104CDC-FA39-436F-AD0C-454B595BF196}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DetectCycle</RootNamespace>
-    <AssemblyName>DetectCycle</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>FindMergePointOfTwoLists</RootNamespace>
+    <AssemblyName>FindMergePointOfTwoLists</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
