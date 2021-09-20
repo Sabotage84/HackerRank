@@ -51,31 +51,84 @@ namespace FindMergePointOfTwoLists
 
         static int findMergeNode(SinglyLinkedListNode head1, SinglyLinkedListNode head2)
         {
+            SinglyLinkedListNode curTemp;
+            SinglyLinkedListNode nextTemp;
+            SinglyLinkedListNode prevTemp;
+
+            SinglyLinkedListNode temp = head1;
+
+            while (temp != null)
+            {
+                Console.Write(temp.data + " ");
+                temp = temp.next;
+            }
+            Console.WriteLine();
+
+            prevTemp = null;
+            curTemp = head1;
+            nextTemp = curTemp.next;
+            while (curTemp != null)
+            {
+                nextTemp = curTemp.next;
+                curTemp.next = prevTemp;
+                prevTemp = curTemp;
+                curTemp = nextTemp;
+
+            }
+            head1 = prevTemp;
+
+            temp = head1;
+
+            while (temp != null)
+            {
+                Console.Write(temp.data + " ");
+                temp = temp.next;
+            }
+            Console.WriteLine();
+
+
+            temp = head2;
+
+            while (temp != null)
+            {
+                Console.Write(temp.data + " ");
+                temp = temp.next;
+            }
+            Console.WriteLine();
+
+
+            prevTemp = null;
+            curTemp = head2;
+            nextTemp = curTemp.next;
+            while (curTemp != null)
+            {
+                nextTemp = curTemp.next;
+                curTemp.next = prevTemp;
+                prevTemp = curTemp;
+                curTemp = nextTemp;
+
+            }
+            head2 = prevTemp;
+
+            temp = head2;
+
+            while (temp != null)
+            {
+                Console.Write(temp.data + " ");
+                temp = temp.next;
+            }
+            Console.WriteLine();
+
+
             while (true)
             {
-                if (head1.data > head2.data)
-                {
-                    head2 = head2.next;
-                }
-                else if (head1.data < head2.data)
-                {
-                    head1 = head1.next;
-                }
-                else
-                {
-                    if (object.ReferenceEquals(head1, head2))
-                        return head1.data;
-                    else
-                    {
-                        if (head2.next.data > head1.next.data)
-                            head1 = head1.next;
-                        else
-                            head2 = head2.next;
-                    }
-                }
+                if (!object.ReferenceEquals(head1.next, head2.next))
+                    return head2.data;
+                head1 = head1.next;
+                head2 = head2.next;
             }
 
-            
+
         }
 
         static void Main(string[] args)
